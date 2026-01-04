@@ -1,6 +1,6 @@
 """
 Interactive Streamlit app to explore model chat templates, apply them to message inputs,
-send prompts via the SambaNova Completions API, and parse model outputs.
+send prompts via the Infercom Completions API, and parse model outputs.
 """
 
 import base64
@@ -139,7 +139,7 @@ def sidebar_setup(
         )
         st.header('Credentials')
 
-        # Callout to get SambaNova API Key
+        # Callout to get Infercom API Key
         st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
         # Settings
@@ -261,8 +261,8 @@ def sidebar_setup(
                 api_model_name = st.text_input(
                     'API model name',
                     'Meta-Llama-3.3-70B-Instruct',
-                    help="""Enter the name of the model to use for generating completions through the **SambaNova API**,
-                    this can be any model available in your SambaNova account that supports the Completions endpoint""",
+                    help="""Enter the name of the model to use for generating completions through the **Infercom API**,
+                    this can be any model available in your Infercom account that supports the Completions endpoint""",
                 )
                 col1, col2, col3 = st.columns(3)
                 with col1:

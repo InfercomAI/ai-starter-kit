@@ -2,7 +2,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -40,9 +40,9 @@ Table of Contents:
 
 # 1. Overview
 
-This AI Starter Kit is an example of a semantic search workflow. You send your PDF or TXT file to the SambaNova platform, and get answers to questions about the documents content. The Kit includes:
+This AI Starter Kit is an example of a semantic search workflow. You send your PDF or TXT file to the Infercom platform, and get answers to questions about the documents content. The Kit includes:
 
-- A configurable SambaNova connector. The connector generates answers from a deployed model.
+- A configurable Infercom connector. The connector generates answers from a deployed model.
 - A configurable integration with a third-party vector database.
 - An implementation of a semantic search workflow using [Langchain LCEL](https://python.langchain.com/v0.1/docs/expression_language/).
 - Prompt construction strategies.
@@ -68,9 +68,9 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ### 2.2.1. Set up the generative model
 
-The next step is to set up your environment variables to use one of the inference models available from SambaNova. You can obtain a free API key through SambaCloud.
+The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
 
-Follow the instructions [here](../README.md#getting-a-sambanova-api-key-and-setting-your-generative-models) to set up your environment variables.
+Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 
 Then, in the [config file](./config.yaml), set the `model` config depending on the model you want to use.
 
@@ -176,7 +176,7 @@ This workflow is an example of leveraging data stored in a vector database along
 <details>
 <summary> Q&A workflow </summary>
 
-After the relevant information is retrieved, the content is sent to a SambaNova LLM to generate a final response to the user query.
+After the relevant information is retrieved, the content is sent to an Infercom LLM to generate a final response to the user query.
 
 Before being sent to the LLM, the user's query is combined with the retrieved content along with instructions to form the prompt. This process involves prompt engineering, and is an important part of ensuring quality output. In this AI starter kit, customized prompts are provided to the LLM to improve the quality of response for this use case.
 

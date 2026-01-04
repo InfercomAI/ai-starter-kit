@@ -1,7 +1,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -40,7 +40,7 @@ This kit include a series of Notebooks that demonstrates various methods for ext
 
 1. Clone the repo.
 ```
-git clone https://github.sambanovasystems.com/SambaNova/ai-starter-kit.git
+git clone https://github.com/InfercomAI/ai-starter-kit.git
 ```
 2. (Recommended) Set up a `venv` or `conda` environment for installation.
 ```
@@ -81,7 +81,7 @@ With this option, all functionality and Jupyter notebooks are ready to use.
 
 2. Clone the repo.
 ```
-git clone https://github.sambanovasystems.com/SambaNova/ai-starter-kit.git
+git clone https://github.com/InfercomAI/ai-starter-kit.git
 ```
 3. Some text extraction examples use the `Unstructured` library. Register at [Unstructured.io](https://unstructured.io/#get-api-key) to get a free API key and create an enviroment file to store the API key and URL:
 ```
@@ -140,7 +140,7 @@ The [notebooks](notebooks) folder has several data extraction recipes and pipeli
 
 - [pdf_extraction.ipynb](notebooks/pdf_extraction.ipynb): Examples of text extraction from PDF documents using different packages including different OCR and non-OCR packages. Depending on your specific use case, some packages may perform better than others.
 
-- [retrieval_from_pdf_tables.ipynb](notebooks/retrieval_from_pdf_tables.ipynb): Example of a simple RAG retiever and an example of a multivector RAG retriever for PDF with tables retrieval. For SambaNova model endpoint usage, refer to the [top-level ai-starter-kit README](../README.md) 
+- [retrieval_from_pdf_tables.ipynb](notebooks/retrieval_from_pdf_tables.ipynb): Example of a simple RAG retriever and an example of a multivector RAG retriever for PDF with tables retrieval. For Infercom model endpoint usage, refer to the [top-level ai-starter-kit README](../README.md) 
 
 - [qa_qc_util.ipynb](notebooks/qa_qc_util.ipynb): Simple utility for visualizing text boxes extracted using the Fitz package. This visualization can be particularly helpful when dealing with complex multi-column PDF documents, and in the debugging process.
 

@@ -1,23 +1,23 @@
 <a href="https://www.infercom.ai/">
 <picture>
- <source media="(prefers-color-scheme: dark)" srcset="../../images/SambaNova-light-logo-1.png" height="100">
-  <img alt="SambaNova logo" src="../images/SambaNova-dark-logo-1.png" height="100">
+ <source media="(prefers-color-scheme: dark)" srcset="../../images/light-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
-SambaParse
+Infercom Parse
 ===========
 
-SambaParse is a Python library that simplifies the process of extracting and processing unstructured data using the Unstructured.io API. It provides a convenient wrapper around the Unstructured.io CLI tool, allowing you to ingest data from various sources, perform partitioning, chunking, embedding, and load the processed data into a vector database. It's designed to be used within AI Starter kits and SN Apps, unifying our data ingestion and document intelligence platform. This allows us to keep our code base centralized for data ingestion kits.
+Infercom Parse is a Python library that simplifies the process of extracting and processing unstructured data using the Unstructured.io API. It provides a convenient wrapper around the Unstructured.io CLI tool, allowing you to ingest data from various sources, perform partitioning, chunking, embedding, and load the processed data into a vector database. It's designed to be used within AI Starter kits, unifying our data ingestion and document intelligence platform. This allows us to keep our code base centralized for data ingestion kits.
 
 ## Prerequisites
 
-Before using SambaParse, make sure you have the following:
+Before using Infercom Parse, make sure you have the following:
 
 - Docker installed on your machine (or access to another API server)
 - An Unstructured.io API key
 
-Before using SambaParse, make sure you have the following:
+Before using Infercom Parse, make sure you have the following:
 
 - Create a `.env` file in the ai-starter-kit root directory (not in the parsing folder root):
 

@@ -142,12 +142,12 @@ def main() -> None:
     if 'st_session_id' not in st.session_state:
         st.session_state.st_session_id = str(uuid.uuid4())
 
-    st.title(':orange[SambaNova] Evaluation Kit')
+    st.title(':green[Infercom] Evaluation Kit')
 
     with st.sidebar:
         st.title('Setup')
 
-        # Callout to get SambaNova API Key
+        # Callout to get Infercom API Key
         st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
         st.markdown('Get your WANDB API key [here](https://wandb.ai/authorize)')
 

@@ -2,7 +2,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -43,7 +43,7 @@ Multimodal Knowledge Retrieval
 # Overview
 
 This AI Starter Kit is an example of a multimodal retrieval workflow. You load your images or PDF files, and get answers to questions about the documents content. The Kit includes:
- -   A configurable SambaNova connector. The connector generates answers from a deployed multimodal model, and a deployed LLM.
+ -   A configurable Infercom connector. The connector generates answers from a deployed multimodal model, and a deployed LLM.
  -   An integration with a third-party vector database.
  -   An implementation of a semantic search workflow.
  -   An implementation of a multi-vector database for searching over document summaries
@@ -84,7 +84,7 @@ This overview should help users understand the strengths and limitations of the 
 
 This starter kit, you need both a LVLM and a LLM. 
 * We use the Llama4 Maverick as LVLM.
-* You can use a LLM of your choice from SambaNova.
+* You can use a LLM of your choice from Infercom.
 
 ## Clone this repository
 
@@ -95,9 +95,9 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ## Set up the LVLM and LLM inference endpoints, configs and environment variables
 
-The next step is to set up your environment variables to use the inference models available from SambaNova. You can obtain a free API key through SambaCloud.
+The next step is to set up your environment variables to use the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
 
-Follow the instructions [here](../README.md#getting-a-sambanova-api-key-and-setting-your-generative-models) to set up your environment variables.
+Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 
 Then, in the [config file](./config.yaml), set the `model` config for `llm` and `lvlm` depending on the models you want to use.
 
@@ -210,7 +210,7 @@ This workflow is an example of leveraging data stored in a vector database and d
 
 After the relevant information is retrieved, what happens next depends on the setting of **Answer over raw images**.
 
-* If **Answer over raw images** is disabled, the content (table and text documents/summaries, and images summaries) is sent directly to a SambaNova LLM to generate a final response to the user query.
+* If **Answer over raw images** is disabled, the content (table and text documents/summaries, and images summaries) is sent directly to an Infercom LLM to generate a final response to the user query.
 
 * If **Answer over raw images** is enabled, the retrieved raw images and query are both sent to the LVLM. With each image, intermediate answers to the query are received. These intermediate answers are included with relevant text and table documents/summaries to be used as context.
 
@@ -256,7 +256,7 @@ retrieval:
 
 ## Customize data embedding 
 
-Several open-source embedding models are available on Hugging Face. [This leaderboard](https://huggingface.co/spaces/mteb/leaderboard) ranks these models based on the Massive Text Embedding Benchmark (MTEB). A number of these models are available on SambaStudio and can be further fine-tuned on specific datasets to improve performance.
+Several open-source embedding models are available on Hugging Face. [This leaderboard](https://huggingface.co/spaces/mteb/leaderboard) ranks these models based on the Massive Text Embedding Benchmark (MTEB). A number of these models can be fine-tuned on specific datasets to improve performance.
 
 You can do this modification in the following location:
 ```
@@ -264,7 +264,7 @@ file: src/multimodal.py
 function: create_vectorstore
 ```
 
-For details about the SambaStudio hosted embedding models see the section *Use Sambanova's LLMs and Embeddings Langchain wrappers* [here](../README.md)
+For details about LLMs and Embeddings using Langchain wrappers see [here](../README.md)
 
 ## Customize embedding storage 
 
@@ -295,13 +295,11 @@ function: get_retrieval_chain
 
 You can customize the Large Language Model. The customization depends on the endpoint that you are using. 
 
-### SambaStudio endpoint
+### Customize the model
 
-The starter kit uses the SN LLM model, which can be further fine-tuned to improve response quality. 
-
-1. To train a model in SambaStudio, [prepare your training data](https://docs.sambanova.ai/sambastudio/latest/generative-data-prep.html), [import your dataset into SambaStudio](https://docs.sambanova.ai/sambastudio/latest/add-datasets.html) and [run a training job](https://docs.sambanova.ai/sambastudio/latest/training.html)
-2. To modify the parameters for calling the model, make changes to the `config.yaml` file. 
-3. You can also set the values of temperature and maximum generation token in that file. 
+The starter kit uses the Infercom LLM model. To modify the parameters for calling the model:
+1. Make changes to the `config.yaml` file.
+2. You can also set the values of temperature and maximum generation token in that file. 
 
 ### Experiment with Prompt Engineering
 

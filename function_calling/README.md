@@ -2,7 +2,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -57,9 +57,9 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ### Set up the generative model
 
-The next step is to set up your environment variables to use one of the inference models available from SambaNova. You can obtain a free API key through SambaCloud.
+The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
 
-Follow the instructions [here](../README.md#getting-a-sambanova-api-key-and-setting-your-generative-models) to set up your environment variables.
+Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 
 Then, in the [config file](./config.yaml), set the `model` config depending on the model you want to use.
 

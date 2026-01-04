@@ -292,7 +292,7 @@ def main() -> None:
 
         st.title('Setup')
 
-        # Callout to get SambaNova API Key
+        # Callout to get Infercom API Key
         st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
         if not are_credentials_set(additional_env_vars):

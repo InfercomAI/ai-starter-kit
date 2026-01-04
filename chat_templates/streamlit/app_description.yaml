@@ -7,7 +7,7 @@ app_overview: |
     Users can dynamically define message sequences, optionally include tool schemas, 
     and render the complete prompt using either a model’s built-in template or a custom one.
 
-    The rendered prompt can then be sent directly to the SambaNova Completions API, 
+    The rendered prompt can then be sent directly to the Infercom Completions API, 
     showing the raw text output produced by the model. 
     Finally, users can apply predefined or custom post-processing parsers to transform the model’s raw text output 
     back into structured message and tool-call formats illustrating how high-level chat and tool-calling 

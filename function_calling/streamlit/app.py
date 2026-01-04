@@ -51,7 +51,7 @@ def load_app_description() -> Any:
 
 config = load_config()
 prod_mode = config.get('prod_mode', False)
-llm_type = 'SambaStudio' if config.get('llm', {}).get('api') == 'sambastudio' else 'SambaNova Cloud'
+llm_type = 'SambaStudio' if config.get('llm', {}).get('api') == 'sambastudio' else 'Infercom Cloud'
 st_tools = config.get('st_tools', {})
 st_preset_queries = load_preset_queries()
 st_description = load_app_description()
@@ -341,7 +341,7 @@ def main() -> None:
 
         st.title('Setup')
 
-        # Callout to get SambaNova API Key
+        # Callout to get Infercom API Key
         st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
         if not are_credentials_set(additional_env_vars):

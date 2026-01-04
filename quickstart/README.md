@@ -1,32 +1,32 @@
 <a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
 
-# SambaNova API QuickStart Guide
+# Infercom API QuickStart Guide
 
-This guide walks through setting up an API key, performing a few sample queries with and without LangChain, and shares example applications to bootstrap application development for common AI use cases with open-source Python code on the SambaNova GitHub page. Let's get started!
+This guide walks through setting up an API key, performing a few sample queries with and without LangChain, and shares example applications to bootstrap application development for common AI use cases. Let's get started!
 
-## Setting up SambaNova API Key
+## Setting up Infercom API Key
 
-1. Create an account on the [SambaNova Developer Portal](https://cloud.infercom.ai/) to get an API key.
-2. Once logged in, navigate to the API section and generate a new key. 
+1. Create an account on the [Infercom Cloud Portal](https://cloud.infercom.ai/) to get an API key.
+2. Once logged in, navigate to the API section and generate a new key.
 3. Set your API key as an environment variable:
    ```shell
-   export SAMBANOVA_API_KEY="your-api-key-here"
+   export INFERCOM_API_KEY="your-api-key-here"
    ```
 
 ## Supported Models
 
-SambaCloud currently supports the following models for all developer and enterprise accounts: [View supported models](https://docs.sambanova.ai/docs/en/models/sambacloud-models).
+Infercom currently supports the following models: `gpt-oss-120b`, `Meta-Llama-3.3-70B-Instruct`, `DeepSeek-V3-0324-cb`.
 
 ## Query the API
 
 Install the OpenAI Python library:
-```shell  
+```shell
 pip install openai
 ```
 
@@ -36,11 +36,11 @@ Perform a chat completion:
 from openai import OpenAI
 import os
 
-api_key = os.environ.get("SAMBANOVA_API_KEY")
+api_key = os.environ.get("INFERCOM_API_KEY")
 
 client = OpenAI(
     base_url="https://api.infercom.ai/v1/",
-    api_key=api_key,  
+    api_key=api_key,
 )
 
 model = "Meta-Llama-3.3-70B-Instruct"
@@ -50,7 +50,7 @@ completion = client.chat.completions.create(
     model=model,
     messages=[
         {
-            "role": "user", 
+            "role": "user",
             "content": prompt,
         }
     ],
@@ -64,20 +64,20 @@ for chunk in completion:
 print(response)
 ```
 
-## Using SambaNova APIs with Langchain
+## Using Infercom APIs with Langchain
 
 Install `langchain-sambanova`:
-```shell  
+```shell
 pip install -U langchain-sambanova
 ```
 
-Here's an example of using SambaNova's APIs with the Langchain library:
+Here's an example of using Infercom's APIs with the Langchain library:
 
 ```python
 import os
 from langchain_sambanova import ChatSambaNova
 
-api_key = os.environ.get("SAMBANOVA_API_KEY")
+api_key = os.environ.get("INFERCOM_API_KEY")
 
 llm = ChatSambaNova(
     api_key=api_key,
@@ -89,17 +89,16 @@ response = llm.invoke('What is the capital of France?')
 print(response.content)
 ```
 
-This code snippet demonstrates how to set up a Langchain `ChatSambaNova` instance with SambaNova's APIs, specifying the API key, streaming option, and model. You can then use the `llm` object to generate completions by passing in prompts.
+This code snippet demonstrates how to set up a Langchain `ChatSambaNova` instance with Infercom's APIs, specifying the API key, streaming option, and model. You can then use the `llm` object to generate completions by passing in prompts.
 
 ## Get Help
 
-- Check out the [SambaNova Developer Guide](https://docs.sambanova.ai/cloud/docs/get-started/overview) for technical documentation
 - For Infercom-specific support, contact support@infercom.ai (for registered users)
-- For technical questions about SambaNova technology, visit the [SambaNova Community](https://community.sambanova.ai)
+- For technical questions about the underlying SambaNova technology, visit the [SambaNova Community](https://community.sambanova.ai)
 - Create an issue on [GitHub](https://github.com/InfercomAI/ai-starter-kit/issues) for bugs or feature requests
-- More inference models, longer context lengths, and embeddings models are coming soon!
+- More inference models and features are coming soon!
 
-  
+
 ## Contribute
 
-Building something cool? We welcome contributions to the SambaNova Quickstarts repository! If you have ideas for new quickstart projects or improvements to existing ones, please [open an issue](https://github.com/InfercomAI/ai-starter-kit/issues/new) or submit a [pull request](https://github.com/InfercomAI/ai-starter-kit/pulls) and we'll respond right away.
+Building something cool? We welcome contributions! If you have ideas for new quickstart projects or improvements to existing ones, please [open an issue](https://github.com/InfercomAI/ai-starter-kit/issues/new) or submit a [pull request](https://github.com/InfercomAI/ai-starter-kit/pulls) and we'll respond right away.

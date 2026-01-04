@@ -1,7 +1,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -19,11 +19,11 @@ Questions? Just <a href="https://discord.gg/54bNAqRw" target="_blank">message us
 - [4. Deploy the starter kit GUI](#4-deploy-the-starter-kit-gui)
 - [5. Use the starter kit:](#5-use-the-starter-kit)
   - [5.1 Select or define a chat template](#51-select-or-define-a-chat-template)
-  - [5.2 Set the SambaNova model to use](#52-set-the-sambanova-model-to-use)
+  - [5.2 Set the Infercom model to use](#52-set-the-infercom-model-to-use)
   - [5.3 Set the Output parser to use](#53-set-the-output-parser-to-use)
   - [5.4 Add messages and tools](#54-add-messages-and-tools)
   - [5.5 Render and apply the chat template](#55-render-and-apply-the-chat-template)
-  - [5.6 Invoke the SambaNova Completions API](#56-invoke-the-sambanova-completions-api)
+  - [5.6 Invoke the Infercom Completions API](#56-invoke-the-infercom-completions-api)
   - [5.7 Parse model output](#57-parse-model-output)
 - [6. Explore the notebook workflow](#6-explore-the-notebook-workflow)
 - [7. Third-party tools and data sources](#7-third-party-tools-and-data-sources)
@@ -57,7 +57,7 @@ flowchart LR
 A[Instruction role<br/>messages and tools] 
   -->|"messages[]<br/>+ tools[]"| B[Apply Jinja<br/>chat template]
 
-B -->|"rendered prompt<br/>raw string"| C[Send prompt<br/>to SambaNova<br/>Completions API]
+B -->|"rendered prompt<br/>raw string"| C[Send prompt<br/>to Infercom<br/>Completions API]
 
 C -->|"raw string response<br/>from model"| D[Apply parser<br/>convert raw text<br/>to structured data]
 
@@ -85,9 +85,9 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ## 3.2. Set up the required environment variables 
 
-The next step is to set up your environment variables to use one of the inference models available from SambaNova. You can obtain a free API key through SambaCloud.
+The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
 
-Follow the instructions [here](../README.md#getting-a-sambanova-api-key-and-setting-your-generative-models) to set up your environment variables.
+Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 
 Additionally set a Hugging Face token, that is required to download tokenizer configurations and chat templates from gated models such as the Llama families.
 Get it by logging into your Hugging Face account and visiting https://huggingface.co/settings/tokens.
@@ -126,7 +126,7 @@ After you've deployed the GUI, you can use the starter kit. Follow these steps:
 - Load a built-in template from a Hugging Face model (e.g., meta-llama/Llama-3.1-8B-Instruct).
 - Or write your own Jinja template directly in the UI.
   
-## 5.2 Set the SambaNova model to use
+## 5.2 Set the Infercom model to use
 
 - Set the model name to call via completions API
 - Set extra parameters to sent to the model
@@ -146,7 +146,7 @@ Dynamically build a conversation message list and optional tool schema.
 ## 5.5 Render and apply the chat template
 Visualize the raw text prompt that will be sent to the model.
 
-## 5.6 Invoke the SambaNova Completions API
+## 5.6 Invoke the Infercom Completions API
 Submit the formatted prompt to the selected model and view its raw text output.
 
 ## 5.7 Parse model output
@@ -160,7 +160,7 @@ It is divided into:
 - Setup – Load environment and dependencies.
 - Load chat template – From Hugging Face or custom Jinja.
 - Apply template – Render with messages and tools.
-- Invoke completions – Send to SambaNova API.
+- Invoke completions – Send to Infercom API.
 - Parse output – Extract structured assistant message.
 
 This provides a transparent view of how chat formatting, model inference, and tool parsing work together.

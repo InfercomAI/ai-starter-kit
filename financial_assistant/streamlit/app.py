@@ -38,13 +38,13 @@ initialize_session(session_state=streamlit.session_state, prod_mode=prod_mode, a
 # Set CSS styles
 set_css_styles()
 
-# Add SambaNova logo
+# Add Infercom logo
 streamlit.logo(image=os.path.join(repo_dir, 'images', 'dark-logo.png'))
 
 # Title of the main page
 columns = streamlit.columns([0.15, 0.85], vertical_alignment='top')
 columns[0].image(os.path.join(repo_dir, 'images', 'dark-logo.png'))
-columns[1].title('SambaNova Financial Assistant')
+columns[1].title('Infercom Financial Assistant')
 
 # Home page
 if not are_credentials_set(additional_env_vars):
@@ -67,7 +67,7 @@ with streamlit.sidebar:
     )
 
     if not are_credentials_set(additional_env_vars):
-        # Get the SambaNova API Key
+        # Get the Infercom API Key
         streamlit.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
         api_key, additional_vars = env_input_fields(additional_env_vars)
         if streamlit.button('Save Credentials', key='save_credentials_sidebar'):
@@ -119,7 +119,7 @@ def main() -> None:
                     logger.warning('Could not schedule deletion of cache directory.')
 
         # Custom button to exit the app in prod mode
-        # This will clear the chat history, delete the cache and clear the SambaNova credentials
+        # This will clear the chat history, delete the cache and clear the Infercom credentials
         if prod_mode:
             time_delta = datetime.datetime.now() - streamlit.session_state.launch_time
             if (
@@ -130,7 +130,7 @@ def main() -> None:
                 streamlit.session_state.chat_history = list()
                 # Delete the cache
                 clear_cache(delete=True)
-                # Clear the SambaNova credentials
+                # Clear the Infercom credentials
                 save_credentials('', '', prod_mode)  # type: ignore
 
                 streamlit.success(r':green[The chat history has been cleared.]')

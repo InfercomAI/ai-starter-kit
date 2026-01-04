@@ -1,7 +1,7 @@
 <a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
@@ -37,9 +37,9 @@ Search Assistant
 
 # Overview
 
-This AI Starter Kit is an example of a semantic search workflow that can be built using the SambaNova platform to get answers to your questions using Google search information as the source. This kit includes:
+This AI Starter Kit is an example of a semantic search workflow that can be built using the Infercom platform to get answers to your questions using Google search information as the source. This kit includes:
 
- -   A configurable SambaNova connector to run inference off a model deployed and trained on SambaNova hardware. 
+ -   A configurable Infercom connector to run inference off a model. 
  -   A configurable integration with a third-party vector database.
  -   An implementation of the semantic search workflow and prompt construction strategies.
  -   Configurable integrations with multiple SERP APIs
@@ -66,9 +66,9 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ### Set up the generative model
 
-The next step is to set up your environment variables to use one of the inference models available from SambaNova. You can obtain a free API key through SambaCloud.
+The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
 
-Follow the instructions [here](../README.md#getting-a-sambanova-api-key-and-setting-your-generative-models) to set up your environment variables.
+Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 
 Then, in the [config file](./config.yaml), set the `model` config depending on the model you want to use.
 
@@ -113,7 +113,7 @@ If you want to use virtualenv or conda environment
 
 If you want to use Docker:
 
-1. Update the `SAMBASTUDIO_KEY`, `SNAPI`, `SNSDK` args in [docker-compose.yaml file](docker-compose.yaml)
+1. Update the `INFERCOM_API_KEY` arg in [docker-compose.yaml file](docker-compose.yaml)
 
 2. Run the command:
 
@@ -253,11 +253,10 @@ This modification can be done in the following location:
 
 ## Customize data embedding
 
-Several open source embedding models are available on HuggingFace. [This leaderboard](https://huggingface.co/spaces/mteb/leaderboard) ranks these models based on the Massive Text Embedding Benchmark (MTEB). A number of these models, such as [e5-large-v2](https://huggingface.co/intfloat/e5-large-v2) and [e5-mistral-7b-instruct](https://huggingface.co/intfloat/e5-mistral-7b-instruct), are available on SambaStudio and can be further fine-tuned on specific datasets to improve performance.
+Several open source embedding models are available on HuggingFace. [This leaderboard](https://huggingface.co/spaces/mteb/leaderboard) ranks these models based on the Massive Text Embedding Benchmark (MTEB). A number of these models, such as [e5-large-v2](https://huggingface.co/intfloat/e5-large-v2) and [e5-mistral-7b-instruct](https://huggingface.co/intfloat/e5-mistral-7b-instruct), can be fine-tuned on specific datasets to improve performance.
 
 To change the embedding model, do the following:
 * If using CPU embedding (i.e., `type` in `embedding_model` is set to `"cpu"` in the [config.yaml](config.yaml) file), e5-large-v2 from HuggingFaceInstruct is used by default. If you want to use another model, you will need to manually modify the `EMBEDDING_MODEL` variable and the `load_embedding_model()` function in the [api_gateway.py](../utils/model_wrappers/api_gateway.py). 
-* If using SambaStudio embedding (i.e., `type` in `embedding_model` is set to `"sambastudio"` in the [config.yaml](config.yaml) file), you will need to change the SambaStudio endpoint and/or the configs `batch_size`, `coe` and `select_expert` in the config file. 
 
 ## Customize embedding storage
 

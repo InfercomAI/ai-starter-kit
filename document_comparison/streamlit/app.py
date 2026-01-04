@@ -241,7 +241,7 @@ def main() -> None:
     if 'selected_app_template' not in st.session_state:
         st.session_state.selected_app_template = None
 
-    # Callout to get SambaNova API Key
+    # Callout to get Infercom API Key
     st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
     if not are_credentials_set(additional_env_vars):

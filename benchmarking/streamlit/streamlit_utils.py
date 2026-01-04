@@ -16,7 +16,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
 repo_dir = os.path.abspath(os.path.join(kit_dir, '..'))
 
-LLM_API_OPTIONS = {'sncloud': 'SambaNova Cloud'}
+LLM_API_OPTIONS = {'sncloud': 'Infercom Cloud'}
 MULTIMODAL_IMAGE_SIZE_OPTIONS = {'na': 'N/A', 'small': 'Small', 'medium': 'Medium', 'large': 'Large'}
 QPS_DISTRIBUTION_OPTIONS = {'constant': 'Constant', 'uniform': 'Uniform', 'exponential': 'Exponential'}
 APP_PAGES = {
@@ -103,7 +103,7 @@ def setup_credentials() -> None:
 
     st.title('Setup')
 
-    # Callout to get SambaNova API Key
+    # Callout to get Infercom API Key
     st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
     # Set the llm_api to sncloud (only option for now)
@@ -168,7 +168,7 @@ def update_progress_bar(step: int, total_steps: int) -> None:
 
 def set_api_variables() -> Dict[str, Any]:
     if st.session_state.prod_mode:
-        # SambaNova Cloud
+        # Infercom Cloud
         if st.session_state.llm_api == 'sncloud':
             api_variables = {
                 'INFERCOM_API_BASE': st.session_state.INFERCOM_API_BASE,
