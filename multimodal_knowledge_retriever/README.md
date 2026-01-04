@@ -34,7 +34,7 @@ Multimodal Knowledge Retrieval
     - [Customize embedding storage](#customize-embedding-storage)
     - [Customize Retrieval](#customize-retrieval)
     - [Customize the LLM](#customize-the-llm)
-        - [SambaStudio endpoint](#sambastudio-endpoint)
+        - [Customize the model](#customize-the-model)
         - [Experiment with Prompt Engineering](#experiment-with-prompt-engineering)
 - [Third-party tools and data sources](#third-party-tools-and-data-sources)
 

@@ -109,7 +109,7 @@ We provide a simple module for using the Function Calling LLM, for this you will
 
     > See more in [langchain tools](https://python.langchain.com/v0.1/docs/modules/tools/)
 
-2. Instantiate your Function calling LLM, passing the model to use (Sambastudio), and the required tools as argument, then you can invoke the function calling pipeline using the `function_call_llm` method passing the user query
+2. Instantiate your Function calling LLM, passing the required tools as argument, then you can invoke the function calling pipeline using the `function_call_llm` method passing the user query
 
     ``` python
         from function_calling.src.function_calling  import FunctionCallingLlm
