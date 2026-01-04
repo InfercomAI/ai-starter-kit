@@ -208,7 +208,7 @@ class ChatTemplateManager:
     # Completions API invocation
     def completions_invoke(self, prompt: str, model: str, **kwargs: Any) -> Any:
         """
-        Send a raw prompt to the SambaNova Completions API.
+        Send a raw prompt to the Infercom Completions API (via SambaNova SDK).
 
         Args:
             prompt: Text input to model.
@@ -223,7 +223,7 @@ class ChatTemplateManager:
             response = client.completions.create(model=model, prompt=prompt, **kwargs)
             return response.choices[0].text
         except Exception as e:
-            error_msg = f'SambaNova API error: {e}'
+            error_msg = f'Infercom API error: {e}'
             logger.error(error_msg)
             raise ValueError(error_msg)
 

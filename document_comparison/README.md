@@ -70,7 +70,7 @@ git clone https://github.com/InfercomAI/ai-starter-kit.git
 
 ### Set up the generative model
 
-The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through [Infercom Cloud](https://cloud.infercom.ai).
+The next step is to set up your environment variables to use one of the inference models available from Infercom. You can obtain an API key through the [Infercom Portal](https://cloud.infercom.ai).
 
 Follow the instructions [here](../README.md#getting-an-infercom-api-key-and-setting-your-generative-models) to set up your environment variables.
 

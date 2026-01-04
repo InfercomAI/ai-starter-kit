@@ -16,7 +16,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
 repo_dir = os.path.abspath(os.path.join(kit_dir, '..'))
 
-LLM_API_OPTIONS = {'sncloud': 'Infercom Cloud'}
+LLM_API_OPTIONS = {'sncloud': 'Infercom Inference Service'}
 MULTIMODAL_IMAGE_SIZE_OPTIONS = {'na': 'N/A', 'small': 'Small', 'medium': 'Medium', 'large': 'Large'}
 QPS_DISTRIBUTION_OPTIONS = {'constant': 'Constant', 'uniform': 'Uniform', 'exponential': 'Exponential'}
 APP_PAGES = {
@@ -168,7 +168,7 @@ def update_progress_bar(step: int, total_steps: int) -> None:
 
 def set_api_variables() -> Dict[str, Any]:
     if st.session_state.prod_mode:
-        # Infercom Cloud
+        # Infercom Inference Service
         if st.session_state.llm_api == 'sncloud':
             api_variables = {
                 'INFERCOM_API_BASE': st.session_state.INFERCOM_API_BASE,

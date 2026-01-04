@@ -8,6 +8,8 @@
 Infercom Parse
 ===========
 
+> **Note:** The Python class is named `SambaParse` (imported from `utils.parsing.sambaparse`) as it uses the underlying SambaNova infrastructure.
+
 Infercom Parse is a Python library that simplifies the process of extracting and processing unstructured data using the Unstructured.io API. It provides a convenient wrapper around the Unstructured.io CLI tool, allowing you to ingest data from various sources, perform partitioning, chunking, embedding, and load the processed data into a vector database. It's designed to be used within AI Starter kits, unifying our data ingestion and document intelligence platform. This allows us to keep our code base centralized for data ingestion kits.
 
 ## Prerequisites
