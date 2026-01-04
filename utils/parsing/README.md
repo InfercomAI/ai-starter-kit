@@ -1,4 +1,4 @@
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../../images/SambaNova-light-logo-1.png" height="100">
   <img alt="SambaNova logo" src="../images/SambaNova-dark-logo-1.png" height="100">
@@ -47,7 +47,7 @@ Mac install instructions. See pyenv-virtualenv repo for more detailed instructio
 - Clone the ai-starter-kit repo and cd:
 
   ```bash
-  git clone https://github.com/sambanova/ai-starter-kit
+  git clone https://github.com/InfercomAI/ai-starter-kit
   ```
 
 - cd into utils/parsing and pip install the requirements

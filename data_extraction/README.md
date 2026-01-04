@@ -1,11 +1,11 @@
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
 </picture>
 </a>
 
-SambaNova AI Starter Kits
+Infercom AI Starter Kits
 ====================
 
 # Data Extraction Examples

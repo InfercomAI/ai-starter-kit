@@ -9,7 +9,7 @@ import plotly.graph_objects as go
 import streamlit as st
 from plotly.graph_objs import Figure
 
-from benchmarking.utils import SAMBANOVA_API_BASE
+from benchmarking.utils import INFERCOM_API_BASE
 from utils.visual.env_utils import are_credentials_set, env_input_fields, initialize_env_variables, save_credentials
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -86,7 +86,7 @@ def render_title_icon(title: str, icon: Optional[str] = None) -> None:
         <style>
             .kit-title {{
                 text-align: center;
-                color: #250E36 !important;
+                color: #1FA85F !important;
                 font-size: 3.0em;
                 font-weight: bold;
                 margin-bottom: 0.5em;
@@ -104,13 +104,13 @@ def setup_credentials() -> None:
     st.title('Setup')
 
     # Callout to get SambaNova API Key
-    st.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+    st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
     # Set the llm_api to sncloud (only option for now)
     st.session_state.llm_api = 'sncloud'
 
     additional_env_vars: Dict[str, Any] = {}
-    additional_env_vars = {'SAMBANOVA_API_BASE': SAMBANOVA_API_BASE}
+    additional_env_vars = {'INFERCOM_API_BASE': INFERCOM_API_BASE}
 
     initialize_env_variables(st.session_state.prod_mode, additional_env_vars)
 
@@ -171,8 +171,8 @@ def set_api_variables() -> Dict[str, Any]:
         # SambaNova Cloud
         if st.session_state.llm_api == 'sncloud':
             api_variables = {
-                'SAMBANOVA_API_BASE': st.session_state.SAMBANOVA_API_BASE,
-                'SAMBANOVA_API_KEY': st.session_state.SAMBANOVA_API_KEY,
+                'INFERCOM_API_BASE': st.session_state.INFERCOM_API_BASE,
+                'INFERCOM_API_KEY': st.session_state.INFERCOM_API_KEY,
             }
         else:
             raise Exception('Only sncloud supported.')

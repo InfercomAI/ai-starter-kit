@@ -56,7 +56,7 @@ sys.path.append(repo_dir)
 
 from enterprise_knowledge_retriever.src.document_retrieval import DocumentRetrieval, RetrievalQAChain, load_chat_prompt
 
-sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+sambanova_api_key = os.environ.get('INFERCOM_API_KEY', '')
 
 
 class TimedRetrievalQAChain(RetrievalQAChain):

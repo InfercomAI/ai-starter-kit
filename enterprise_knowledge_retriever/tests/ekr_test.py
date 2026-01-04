@@ -75,7 +75,7 @@ class EKRTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls: Type['EKRTestCase']) -> None:
         cls.time_start = time.time()
-        cls.sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+        cls.sambanova_api_key = os.environ.get('INFERCOM_API_KEY', '')
         cls.judge = CorrectnessLLMJudge(**judge_info)
         cls.rag_model = WeaveDummyModel(model_kwargs=rag_info)
         cls.data_manager = WeaveDatasetManager()

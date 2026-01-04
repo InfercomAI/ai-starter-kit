@@ -21,7 +21,7 @@ from transformers import AutoTokenizer, PreTrainedTokenizerBase
 from benchmarking.src.llmperf import common_metrics
 from benchmarking.src.llmperf.llmperf_utils import get_tokenizer
 from benchmarking.src.llmperf.models import RequestConfig
-from benchmarking.utils import SAMBANOVA_API_BASE
+from benchmarking.utils import INFERCOM_API_BASE
 
 warnings.filterwarnings('ignore')
 
@@ -232,14 +232,14 @@ class SambaNovaCloudAPI(BaseAPIEndpoint):
         # Load sambanova cloud env variables
         if self.request_config.api_variables:
             self.base_url = (
-                self.request_config.api_variables['SAMBANOVA_API_BASE']
-                if self.request_config.api_variables['SAMBANOVA_API_BASE']
-                else SAMBANOVA_API_BASE
+                self.request_config.api_variables['INFERCOM_API_BASE']
+                if self.request_config.api_variables['INFERCOM_API_BASE']
+                else INFERCOM_API_BASE
             )
-            self.api_key = self.request_config.api_variables['SAMBANOVA_API_KEY']
+            self.api_key = self.request_config.api_variables['INFERCOM_API_KEY']
         else:
-            self.base_url = os.environ.get('SAMBANOVA_API_BASE', SAMBANOVA_API_BASE)
-            self.api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+            self.base_url = os.environ.get('INFERCOM_API_BASE', INFERCOM_API_BASE)
+            self.api_key = os.environ.get('INFERCOM_API_KEY', '')
 
     def _get_url(self) -> str:
         """Builds url for API call

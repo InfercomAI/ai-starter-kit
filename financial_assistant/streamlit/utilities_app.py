@@ -565,11 +565,11 @@ def set_css_styles() -> None:
         """
         <style>
         div.stButton > button {
-            background-color: #250E36;  /* Button background */
+            background-color: #1FA85F;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         div.stButton > button:hover, div.stButton > button:focus  {
-            background-color: #4E22EB;  /* Button background */
+            background-color: #17844A;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         </style>

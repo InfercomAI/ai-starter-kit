@@ -1,5 +1,5 @@
 
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
@@ -9,7 +9,7 @@
 Document Comparison
 ======================
 
-Questions? Just <a href="https://discord.gg/54bNAqRw" target="_blank">message us</a> on Discord <a href="https://discord.gg/54bNAqRw" target="_blank"><img src="https://github.com/sambanova/ai-starter-kit/assets/150964187/aef53b52-1dc0-4cbf-a3be-55048675f583" alt="Discord" width="22"/></a> or <a href="https://github.com/sambanova/ai-starter-kit/issues/new/choose" target="_blank">create an issue</a> in GitHub. We're happy to help live!
+Questions? Just <a href="https://discord.gg/54bNAqRw" target="_blank">message us</a> on Discord <a href="https://discord.gg/54bNAqRw" target="_blank"><img src="https://github.com/InfercomAI/ai-starter-kit/assets/150964187/aef53b52-1dc0-4cbf-a3be-55048675f583" alt="Discord" width="22"/></a> or <a href="https://github.com/InfercomAI/ai-starter-kit/issues/new/choose" target="_blank">create an issue</a> in GitHub. We're happy to help live!
 
 Table of Contents:
 
@@ -63,7 +63,7 @@ You have to set up your environment before you can run or customize the starter 
 Clone the starter kit repo.
 
 ```bash
-git clone https://github.com/sambanova/ai-starter-kit.git
+git clone https://github.com/InfercomAI/ai-starter-kit.git
 ```
 
 ## Set up the models, environment variables and config file

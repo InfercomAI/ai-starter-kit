@@ -1,5 +1,5 @@
 
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
@@ -53,7 +53,7 @@ This sample is ready-to-use. We provide two options:
 * [Use the starter kit GUI](#use-the-starter-kit-gui) helps you run a demo by following a few simple steps. You must perform the setup in [Before you begin](#before-you-begin) and [Deploy the starter kit GUI](#deploy-the-starter-kit-gui) first. 
 * [Customizing the starter kit](#customizing-the-starter-kit) serves as a starting point for customizing the demo to your organization's needs.
 
-https://github.com/sambanova/ai-starter-kit/assets/150964187/21f83d80-c479-4677-9e80-3dcb096f120e
+https://github.com/InfercomAI/ai-starter-kit/assets/150964187/21f83d80-c479-4677-9e80-3dcb096f120e
 
 ## Capabilities and Limitations of Image Analysis
 The AI Starter Kit includes capabilities for retrieving and analyzing images contained in your source documents and integrating them with table textual information to generate comprehensive answers.
@@ -90,7 +90,7 @@ This starter kit, you need both a LVLM and a LLM.
 
 Clone the starter kit repo.
 ```
-git clone https://github.com/sambanova/ai-starter-kit.git
+git clone https://github.com/InfercomAI/ai-starter-kit.git
 ```
 
 ## Set up the LVLM and LLM inference endpoints, configs and environment variables

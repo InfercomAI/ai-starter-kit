@@ -5,7 +5,7 @@ import pandas as pd
 
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), './'))
 
-SAMBANOVA_API_BASE = 'https://api.sambanova.ai/v1'
+INFERCOM_API_BASE = 'https://api.infercom.ai/v1'
 CONFIG_PATH = os.path.join(project_root, 'config.yaml')
 
 

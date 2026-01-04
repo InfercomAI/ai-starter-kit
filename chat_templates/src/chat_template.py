@@ -28,7 +28,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] - %(
 logger = logging.getLogger(__name__)
 
 CACHE_DIR = 'data'
-BASE_URL = 'https://api.sambanova.ai/v1'
+BASE_URL = 'https://api.infercom.ai/v1'
 
 
 class ToolCallModel(BaseModel):
@@ -49,8 +49,8 @@ class ChatTemplateManager:
         cache_dir: str | None = None,
     ) -> None:
         self.hf_token = hf_token
-        self.sambanova_api_key = sambanova_api_key or os.environ.get('SAMBANOVA_API_KEY')
-        self.sambanova_api_base = sambanova_api_base or os.environ.get('SAMBANOVA_API_BASE', BASE_URL)
+        self.sambanova_api_key = sambanova_api_key or os.environ.get('INFERCOM_API_KEY')
+        self.sambanova_api_base = sambanova_api_base or os.environ.get('INFERCOM_API_BASE', BASE_URL)
         self.cache_dir = cache_dir or os.path.join(kit_dir, CACHE_DIR)
         os.makedirs(self.cache_dir, exist_ok=True)
 

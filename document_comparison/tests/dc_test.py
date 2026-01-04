@@ -63,7 +63,7 @@ class DCTestCase(unittest.TestCase):
         if not os.path.exists(PERSIST_DIRECTORY):
             os.makedirs(PERSIST_DIRECTORY)
         cls.time_start = time.time()
-        cls.sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+        cls.sambanova_api_key = os.environ.get('INFERCOM_API_KEY', '')
         cls.document_analyzer = DocumentAnalyzer(sambanova_api_key=cls.sambanova_api_key)
         with open(TEST_CASE_FILE_PATH, 'r') as yaml_file:
             cls.test_case = yaml.safe_load(yaml_file)

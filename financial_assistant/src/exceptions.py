@@ -6,7 +6,7 @@ from typing import Optional
 
 LLM_EXCEPTION_MESSAGE = (
     'We are experiencing an issue with the language model. '
-    'Please try again in a few minutes or change your SAMBANOVA_API_KEY.'
+    'Please try again in a few minutes or change your INFERCOM_API_KEY.'
 )
 
 

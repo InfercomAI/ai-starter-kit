@@ -12,10 +12,10 @@ models:
 
 urls:
   base_client_url:
-    "https://api.sambanova.ai/v1/"
+    "https://api.infercom.ai/v1/"
   reasoning_url:
-    "https://api.sambanova.ai/v1/audio/reasoning"
+    "https://api.infercom.ai/v1/audio/reasoning"
   transcription_url:
-    "https://api.sambanova.ai/v1/audio/transcriptions"
+    "https://api.infercom.ai/v1/audio/transcriptions"
   translation_url:
-    "https://api.sambanova.ai/v1/audio/translations"
+    "https://api.infercom.ai/v1/audio/translations"

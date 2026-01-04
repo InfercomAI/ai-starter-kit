@@ -77,7 +77,7 @@ class TestS3Functions(unittest.TestCase):
         This test downloads an image from a URL, saves it to S3, and verifies its content.
         """
         object_key = os.path.join('test_s3', 'logotype_sambanova_orange.png')
-        image_url = 'https://sambanova.ai/hubfs/logotype_sambanova_orange.png'
+        image_url = 'https://www.infercom.ai/hubfs/logotype_sambanova_orange.png'
 
         # Download the image
         response = requests.get(image_url)
