@@ -58,12 +58,12 @@ def setup_ui_style(repo_dir: str) -> None:
         """
         <style>
         div.stButton > button {
-            background-color: #250E36;  
-            color: #FFFFFF;             
+            background-color: #1FA85F;
+            color: #FFFFFF;
         }
         div.stButton > button:hover, div.stButton > button:focus  {
-            background-color: #4E22EB;  
-            color: #FFFFFF;             
+            background-color: #17844A;
+            color: #FFFFFF;
         }
         </style>
         """,
@@ -96,7 +96,7 @@ def setup_ui_style(repo_dir: str) -> None:
                 <style>
                     .kit-title {{
                         text-align: center;
-                        color: #250E36 !important;
+                        color: #1FA85F !important;
                         font-size: 3em;
                         font-weight: bold;
                     }}
@@ -113,8 +113,8 @@ def setup_ui_style(repo_dir: str) -> None:
 def initialize_manager() -> ChatTemplateManager:
     manager = ChatTemplateManager(
         hf_token=st.session_state['HUGGINGFACE_TOKEN'],
-        sambanova_api_key=st.session_state['SAMBANOVA_API_KEY'],
-        sambanova_api_base=st.session_state['SAMBANOVA_API_BASE'],
+        sambanova_api_key=st.session_state['INFERCOM_API_KEY'],
+        sambanova_api_base=st.session_state['INFERCOM_API_BASE'],
     )
     return manager
 
@@ -140,7 +140,7 @@ def sidebar_setup(
         st.header('Credentials')
 
         # Callout to get SambaNova API Key
-        st.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+        st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
         # Settings
 
@@ -553,7 +553,7 @@ def main() -> None:
     config = load_config()
     app_description = load_app_description()
     prod_mode = config.get('prod_mode', False)
-    additional_env_vars = {'SAMBANOVA_API_BASE': 'https://api.sambanova.ai/v1', 'HUGGINGFACE_TOKEN': None}
+    additional_env_vars = {'INFERCOM_API_BASE': 'https://api.infercom.ai/v1', 'HUGGINGFACE_TOKEN': None}
     initialize_env_variables(prod_mode, additional_env_vars)
 
     if 'manager' not in st.session_state:
@@ -603,7 +603,7 @@ def main() -> None:
                 <style>
                     .kit-description {{
                         text-align:left;
-                        color: #250E36 !important;
+                        color: #1FA85F !important;
                         font-size: 1.4em;
                         display: inline;
                     }}

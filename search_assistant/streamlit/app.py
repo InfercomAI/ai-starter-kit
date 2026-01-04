@@ -30,15 +30,8 @@ APP_DESCRIPTION_PATH = os.path.join(kit_dir, 'streamlit', 'app_description.yaml'
 # Available models in dropdown menu
 LLM_MODELS = [
     'gpt-oss-120b',
-    'Llama-4-Maverick-17B-128E-Instruct',
     'Meta-Llama-3.3-70B-Instruct',
-    'DeepSeek-R1-Distill-Llama-70B',
-    'DeepSeek-R1',
-    'DeepSeek-V3-0324',
-    'DeepSeek-V3.1',
-    'DeepSeek-V3.1-Terminus',
-    'Meta-Llama-3.1-8B-Instruct',
-    'Qwen-32B',
+    'DeepSeek-V3-0324-cb',
 ]
 # Minutes for scheduled cache deletion
 EXIT_TIME_DELTA = 30
@@ -183,11 +176,11 @@ def main() -> None:
         """
         <style>
         div.stButton > button {
-            background-color: #250E36;  /* Button background */
+            background-color: #1FA85F;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         div.stButton > button:hover, div.stButton > button:focus  {
-            background-color: #4E22EB;  /* Button background */
+            background-color: #17844A;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         </style>
@@ -219,7 +212,7 @@ def main() -> None:
         <style>
             .kit-title {
                 text-align: center;
-                color: #250E36 !important;
+                color: #1FA85F !important;
                 font-size: 3.0em;
                 font-weight: bold;
                 margin-bottom: 0.5em;
@@ -230,7 +223,7 @@ def main() -> None:
         unsafe_allow_html=True,
     )
 
-    additional_env_vars.update({'SAMBANOVA_API_BASE': 'https://api.sambanova.ai/v1'})
+    additional_env_vars.update({'INFERCOM_API_BASE': 'https://api.infercom.ai/v1'})
     initialize_env_variables(prod_mode, additional_env_vars)
 
     if 'conversation' not in st.session_state:
@@ -289,7 +282,7 @@ def main() -> None:
         st.title('**Setup**')
 
         # Callout to get SambaNova API Key
-        st.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+        st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
         st.markdown('Get your SerpApi key [here]( https://serpapi.com)')
 
@@ -308,15 +301,15 @@ def main() -> None:
 
         if are_credentials_set(additional_env_vars):
             if prod_mode:
-                sambanova_api_key = st.session_state.SAMBANOVA_API_KEY
+                sambanova_api_key = st.session_state.INFERCOM_API_KEY
                 serpapi_api_key = st.session_state.SERPAPI_API_KEY
                 st.session_state.tool = ['serpapi']
                 st.session_state.search_engine = 'google'
             else:
-                if 'SAMBANOVA_API_KEY' in st.session_state:
-                    sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY') or st.session_state.SAMBANOVA_API_KEY
+                if 'INFERCOM_API_KEY' in st.session_state:
+                    sambanova_api_key = os.environ.get('INFERCOM_API_KEY') or st.session_state.INFERCOM_API_KEY
                 else:
-                    sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY')
+                    sambanova_api_key = os.environ.get('INFERCOM_API_KEY')
                 serpapi_api_key = os.environ.get('SERPAPI_API_KEY')
                 tool = st.radio('Select Search Tool to use', ['serpapi', 'serper', 'openserp'])
                 if tool == 'serpapi':

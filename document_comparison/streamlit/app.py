@@ -73,8 +73,8 @@ def handle_userinput(instruction: str) -> None:
 def initialize_document_analyzer() -> Optional[DocumentAnalyzer]:
     try:
         return DocumentAnalyzer(
-            sambanova_api_key=st.session_state['SAMBANOVA_API_KEY'],
-            sambanova_api_base=st.session_state['SAMBANOVA_API_BASE'],
+            sambanova_api_key=st.session_state['INFERCOM_API_KEY'],
+            sambanova_api_base=st.session_state['INFERCOM_API_BASE'],
         )
     except Exception as e:
         st.error(f'Failed to initialize DocumentAnalyzer: {str(e)}')
@@ -156,11 +156,11 @@ def main() -> None:
         """
         <style>
         div.stButton > button {
-            background-color: #250E36;  /* Button background */
+            background-color: #1FA85F;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         div.stButton > button:hover, div.stButton > button:focus  {
-            background-color: #4E22EB;  /* Button background */
+            background-color: #17844A;  /* Button background */
             color: #FFFFFF;             /* Button text color */
         }
         </style>
@@ -192,7 +192,7 @@ def main() -> None:
         <style>
             .kit-title {
                 text-align: center;
-                color: #250E36 !important;
+                color: #1FA85F !important;
                 font-size: 3.0em;
                 font-weight: bold;
                 margin-bottom: 0.5em;
@@ -207,7 +207,7 @@ def main() -> None:
 
     prod_mode = config.get('prod_mode', False)
 
-    additional_env_vars = {'SAMBANOVA_API_BASE': 'https://api.sambanova.ai/v1'}
+    additional_env_vars = {'INFERCOM_API_BASE': 'https://api.infercom.ai/v1'}
     initialize_env_variables(prod_mode, additional_env_vars)
 
     # if 'conversation' not in st.session_state:
@@ -242,7 +242,7 @@ def main() -> None:
         st.session_state.selected_app_template = None
 
     # Callout to get SambaNova API Key
-    st.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+    st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
 
     if not are_credentials_set(additional_env_vars):
         st.session_state.document_analyzer = None

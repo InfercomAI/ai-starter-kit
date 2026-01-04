@@ -79,7 +79,7 @@ class TestAPIModel(unittest.TestCase):
     @classmethod
     def setUpClass(cls: Type['TestAPIModel']) -> None:
         cls.time_start = time.time()
-        cls.sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+        cls.sambanova_api_key = os.environ.get('INFERCOM_API_KEY', '')
         cls.client = cls.setup_client()
 
     @classmethod

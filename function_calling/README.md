@@ -1,5 +1,5 @@
 
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
@@ -51,7 +51,7 @@ To use this in your application you need an instruction model, we recommend to u
 
 Clone the starter kit repo.
 ```
-git clone https://github.com/sambanova/ai-starter-kit.git
+git clone https://github.com/InfercomAI/ai-starter-kit.git
 ```
 ## Set up the models, environment variables and config file
 

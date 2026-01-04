@@ -82,7 +82,7 @@ def upload_file_options(
     docs: List[UploadedFile] | None
     text_docs: List[UploadedFile] | None
     st.markdown(
-        'Example of a Q&A dataset [here](https://github.com/sambanova/ai-starter-kit/blob/main/eval_jumpstart/data/rag_data.csv)'
+        'Example of a Q&A dataset [here](https://github.com/InfercomAI/ai-starter-kit/blob/main/eval_jumpstart/data/rag_data.csv)'
     )
     docs = st.file_uploader(
         'Add your Q&A dataset',
@@ -101,13 +101,13 @@ def upload_file_options(
 def initialize_base_evaluator(option: str) -> WeaveEvaluator:
     if option == 'Evaluate multiple LLMs':
         return BaseWeaveEvaluator(
-            sambanova_api_key=st.session_state['SAMBANOVA_API_KEY'],
-            sambanova_api_base=st.session_state['SAMBANOVA_API_BASE'],
+            sambanova_api_key=st.session_state['INFERCOM_API_KEY'],
+            sambanova_api_base=st.session_state['INFERCOM_API_BASE'],
         )
     elif option == 'Evaluate Rag Chain':
         return BaseWeaveRAGEvaluator(
-            sambanova_api_key=st.session_state['SAMBANOVA_API_KEY'],
-            sambanova_api_base=st.session_state['SAMBANOVA_API_BASE'],
+            sambanova_api_key=st.session_state['INFERCOM_API_KEY'],
+            sambanova_api_base=st.session_state['INFERCOM_API_BASE'],
         )
     else:
         raise ValueError(f'Invalid Evaluation Option: {option}.')
@@ -119,7 +119,7 @@ st_description = load_app_description()
 def main() -> None:
     prod_mode = False
 
-    additional_env_vars = {'SAMBANOVA_API_BASE': 'https://api.sambanova.ai/v1'}
+    additional_env_vars = {'INFERCOM_API_BASE': 'https://api.infercom.ai/v1'}
     initialize_env_variables(prod_mode, additional_env_vars)
 
     st.set_page_config(
@@ -148,7 +148,7 @@ def main() -> None:
         st.title('Setup')
 
         # Callout to get SambaNova API Key
-        st.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+        st.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
         st.markdown('Get your WANDB API key [here](https://wandb.ai/authorize)')
 
         if not are_credentials_set(additional_env_vars):

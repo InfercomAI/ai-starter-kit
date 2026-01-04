@@ -1,6 +1,6 @@
-# Contributing to SambaNova AI Starter Kits
+# Contributing to Infercom AI Starter Kits
 
-Thank you for your interest in contributing to SambaNova AI Starter Kits! This document provides guidelines and best practices for contributing to our repository.
+Thank you for your interest in contributing to Infercom AI Starter Kits! This document provides guidelines and best practices for contributing to our repository.
 
 ## Table of Contents
 
@@ -14,12 +14,12 @@ Thank you for your interest in contributing to SambaNova AI Starter Kits! This d
 
 ## Overview
 
-SambaNova AI Starter Kits are open-source examples and guides designed to facilitate the deployment of AI-driven use cases. We welcome contributions that improve existing kits or add new functionality.
+Infercom AI Starter Kits are open-source examples and guides designed to facilitate the deployment of AI-driven use cases. We welcome contributions that improve existing kits or add new functionality.
 
 ## Getting Started
 
 1. Create a branch (not a fork) for your contribution
-2. Set up your development environment [See Here For Instructions](https://github.com/sambanova/ai-starter-kit?tab=readme-ov-file#2-base-environment-setup)
+2. Set up your development environment [See Here For Instructions](https://github.com/InfercomAI/ai-starter-kit?tab=readme-ov-file#2-base-environment-setup)
 3. Make your changes following our coding standards
 4. Submit a pull request
 
@@ -123,8 +123,9 @@ Package owners must:
 
 
 ## Questions or Issues?
-- <a href="https://community.sambanova.ai/latest" target="_blank">,Message us</a> on SambaNova Community <a href="https://community.sambanova.ai/latest" 
-- Create an issue on GitHub
+- Create an issue on [GitHub](https://github.com/InfercomAI/ai-starter-kit/issues)
+- Contact Infercom support at support@infercom.ai (for registered users)
+- For technical questions about the underlying SambaNova technology, visit the [SambaNova Community](https://community.sambanova.ai)
 - We're happy to help!
 
 ---

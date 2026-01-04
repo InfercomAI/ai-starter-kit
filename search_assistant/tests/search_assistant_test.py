@@ -66,7 +66,7 @@ class SearchAssistantTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls: Type['SearchAssistantTestCase']) -> None:
         cls.time_start = time.time()
-        cls.sambanova_api_key = os.environ.get('SAMBANOVA_API_KEY', '')
+        cls.sambanova_api_key = os.environ.get('INFERCOM_API_KEY', '')
         cls.serpapi_api_key = os.environ.get('SERPAPI_API_KEY', '')
         cls.search_assistant = SearchAssistant(
             sambanova_api_key=cls.sambanova_api_key, serpapi_api_key=cls.serpapi_api_key

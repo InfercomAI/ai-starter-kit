@@ -30,7 +30,7 @@ from utils.visual.env_utils import are_credentials_set, env_input_fields, save_c
 if not prod_mode:
     load_dotenv(os.path.join(repo_dir, '.env'))
 
-additional_env_vars = {'SAMBANOVA_API_BASE': 'https://api.sambanova.ai/v1'}
+additional_env_vars = {'INFERCOM_API_BASE': 'https://api.infercom.ai/v1'}
 # Initialize session
 initialize_session(session_state=streamlit.session_state, prod_mode=prod_mode, additional_env_vars=additional_env_vars)
 
@@ -68,7 +68,7 @@ with streamlit.sidebar:
 
     if not are_credentials_set(additional_env_vars):
         # Get the SambaNova API Key
-        streamlit.markdown('Get your SambaNova API key [here](https://cloud.sambanova.ai/apis)')
+        streamlit.markdown('Get your Infercom API key [here](https://cloud.infercom.ai/apis)')
         api_key, additional_vars = env_input_fields(additional_env_vars)
         if streamlit.button('Save Credentials', key='save_credentials_sidebar'):
             message = save_credentials(api_key=api_key, additional_vars=additional_vars, prod_mode=prod_mode)

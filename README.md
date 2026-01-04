@@ -1,25 +1,25 @@
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./images/light-logo.png" height="100">
-  <img alt="SambaNova logo" src="./images/dark-logo.png" height="100">
+  <img alt="Infercom logo" src="./images/dark-logo.png" height="100">
 </picture>
 </a>
 
-# SambaNova AI Starter Kits
+# Infercom AI Starter Kits
 
 # Overview
 
-SambaNova AI Starter Kits are a collection of open-source examples and guides designed to facilitate the deployment of AI-driven use cases for both developers and enterprises.
+Infercom AI Starter Kits are a collection of open-source examples and guides designed to facilitate the deployment of AI-driven use cases for both developers and enterprises.
 
-To run these examples, you can obtain a free API key using [SambaCloud](https://cloud.sambanova.ai). Alternatively, if you are a current SambaNova customer, you can deploy your models using [SambaStack](https://sambanova.ai/products/sambastack) or [SambaManaged](https://sambanova.ai/products/sambamanaged). Most of the code examples are written in Python, although the concepts can be applied to any programming language.
+To run these examples, you need an API key from the [Infercom Inference Service](https://cloud.infercom.ai). Infercom is an EU Sovereign AI Inference Platform powered by SambaNova, providing GDPR-compliant AI inference hosted in European datacenters. Most of the code examples are written in Python, although the concepts can be applied to any programming language.
 
-Questions? Just <a href="https://community.sambanova.ai/latest" target="_blank">message us</a> on SambaNova Community <a href="https://community.sambanova.ai/latest" target="_blank"><img src="https://github.com/sambanova/ai-starter-kit/assets/150964187/aef53b52-1dc0-4cbf-a3be-55048675f583" alt="Community" width="22"/></a> or <a href="https://github.com/sambanova/ai-starter-kit/issues/new/choose" target="_blank">create an issue</a> in GitHub. We're happy to help live!
+Questions? <a href="https://github.com/InfercomAI/ai-starter-kit/issues/new/choose" target="_blank">Create an issue</a> in GitHub or contact us at <a href="https://www.infercom.ai/" target="_blank">infercom.ai</a>.
 
 # Available AI Starter Kits
 
 The table below lists the available kits, which are grouped into four categories: 1) Data Ingestion & Preparation, 2) Model Development & Optimization, 3) Intelligent Information Retrieval, and 4) Advanced AI Capabilities.
 
-For functionalities related to third-party integrations, find a list in our [Integrations Repository](https://github.com/sambanova/integrations) and [Integrations Docs](https://docs.sambanova.ai/cloud/docs/integrations).
+For functionalities related to third-party integrations, see the [SambaNova Integrations Repository](https://github.com/sambanova/integrations) and [Integrations Docs](https://docs.sambanova.ai/cloud/docs/integrations).
 
 <table style="width: 100%;">
 <thead>
@@ -41,19 +41,19 @@ For functionalities related to third-party integrations, find a list in our [Int
 
 <tr>
 <td width="20%"><a href="e2e_fine_tuning/README.md">End to End Fine-tuning</a></td>
-<td width="40%"> Recipe to upload and train a Language Model (LLM) using your own data in SambaStudio platform. </td>
+<td width="40%"> Recipe to upload and train a Language Model (LLM) using your own data. </td>
 <td width="20%"> Data Ingestion & Preparation </td>
 </tr>
 
 <tr>
 <td width="20%"><a href="enterprise_knowledge_retriever/README.md">Enterprise Knowledge Retrieval</a></td>
-<td width="40%">Sample implementation of the semantic search workflow using the SambaNova platform to get answers to questions about your documents. Includes a runnable demo.</td>
+<td width="40%">Sample implementation of the semantic search workflow to get answers to questions about your documents. Includes a runnable demo.</td>
 <td width="20%"> Intelligent Information Retrieval </td>  
 </tr>
 
 <tr>
 <td width="20%"><a href="multimodal_knowledge_retriever/README.md">Multimodal Knowledge Retriever</a></td>
-<td width="40%"> Sample implementation of the semantic search workflow leveraging the SambaNova platform to get answers using text, tables, and images to questions about your documents. Includes a runnable demo. </td>
+<td width="40%"> Sample implementation of the semantic search workflow to get answers using text, tables, and images to questions about your documents. Includes a runnable demo. </td>
 <td width="20%"> Intelligent Information Retrieval </td>   
 </tr>
 
@@ -65,13 +65,13 @@ For functionalities related to third-party integrations, find a list in our [Int
 
 <tr>
 <td width="20%"><a href="search_assistant/README.md">Search Assistant</a></td>
-<td width="40%">Sample implementation of the semantic search workflow built using the SambaNova platform to get answers to your questions using search engine snippets, and website crawled information as the source. Includes a runnable demo.</td>
+<td width="40%">Sample implementation of the semantic search workflow to get answers to your questions using search engine snippets and website crawled information as the source. Includes a runnable demo.</td>
 <td width="20%"> Intelligent Information Retrieval </td>   
 </tr>
 
 <tr>
 <td width="20%"><a href="benchmarking/README.md">Benchmarking</a></td>
-<td width="40%">This kit evaluates the performance of multiple LLM models hosted in SambaStudio. It offers various performance metrics and configuration options. Users can also see these metrics within a chat interface.</td>
+<td width="40%">This kit evaluates the performance of multiple LLM models. It offers various performance metrics and configuration options. Users can also see these metrics within a chat interface.</td>
 <td width="20%"> Advanced AI Capabilities </td>    
 </tr>
 
@@ -96,37 +96,27 @@ For functionalities related to third-party integrations, find a list in our [Int
 </tbody>
 </table>
 
-# Getting Started 
+# Getting Started
 
-Go to [SambaNova Quickstart Guide](./quickstart/README.md) if it's your first time using the AI State Kits and you want to try out simple examples. 
+Go to the [Quickstart Guide](./quickstart/README.md) if it's your first time using the AI Starter Kits and you want to try out simple examples.
 
-## Getting a SambaNova API key and setting your generative models
+## Getting an Infercom API Key
 
-Currently, there are two ways to obtain an API key from SambaNova. You can get a free API key using SambaCloud. Alternatively, if you are a current SambaNova customer, you can deploy your models using SambaStack or SambaManaged.
+To use these starter kits, you need an API key from the Infercom Inference Service.
 
-### Use SambaCloud (Option 1)
+### Step 1: Get Your API Key
 
-To generate an API key, go to the [API section of the SambaCloud portal](https://cloud.sambanova.ai/apis).
+1. Go to the [Infercom Portal](https://cloud.infercom.ai)
+2. Sign up or log in to your account
+3. Navigate to the API section to generate your API key
 
-To integrate SambaCloud LLMs with this AI starter kit, update the API information by configuring the environment variables in the `ai-starter-kit/.env` file, use [.env-example](.env-example) as template:
+### Step 2: Configure Your Environment
 
-- Enter the SambaCloud API key in the `ai-starter-kit/.env` file, for example:
-  
+Create a `.env` file in the `ai-starter-kit/` directory using [.env-example](.env-example) as a template:
+
 ```bash
-SAMBANOVA_API_KEY = "your-sambanova-api-key"
-```
-
-### Use SambaStack/SambaManaged (Option 2)
-
-Begin by deploying your LLM of choice (e.g., Llama 3.3 70B) to an endpoint for inference in SambaStack/SambaManaged. 
-
-To integrate your LLM deployed on SambaStack/SambaManaged with this AI starter kit, update the API information by configuring the environment variables in the `ai-starter-kit/.env` file,  use [.env-example](.env-example) as template:
-
-- Set your SambaStack/SambaManaged variables, for example:
-
-``` bash
-SAMBANOVA_API_KEY = "your-sambanova-api-key"
-SAMBANOVA_API_BASE = "you-sambanova-base-url"
+INFERCOM_API_KEY = "your-infercom-api-key"
+INFERCOM_API_BASE = "https://api.infercom.ai/v1"
 ```
 
 ## Run the desired starter kit
@@ -338,7 +328,7 @@ If you're using the Docker-based setup and encounter issues:
 3. Check for any error messages in the console output and address them specifically.
 4. Ensure your `.env` file is correctly set up in the ai-starter-kit root with all necessary environment variables.
 
-If you continue to experience issues, please [open an issue](https://github.com/sambanova/ai-starter-kit/issues/new) with details about your environment, the full error message, and steps to reproduce the problem.
+If you continue to experience issues, please [open an issue](https://github.com/InfercomAI/ai-starter-kit/issues/new) with details about your environment, the full error message, and steps to reproduce the problem.
 
 ### Important Notes for Users
 
@@ -351,7 +341,12 @@ If you continue to experience issues, please [open an issue](https://github.com/
 
 ### API Reference
 
-- Find more information about SambaCloud and SambaStack [here](https://docs.sambanova.ai/cloud/docs/get-started/overview).
+- Find more information about the underlying SambaNova technology [here](https://docs.sambanova.ai/cloud/docs/get-started/overview).
+- For Infercom-specific documentation, visit [infercom.ai](https://www.infercom.ai/).
 
 **Note:** These AI Starter Kit code samples are provided "as-is," and are not production-ready or supported code. Bugfix/support will be on a best-effort basis only. Code may use third-party open-source software. You are responsible for performing due diligence per your organization policies for use in your applications.
+
+---
+
+*Powered by SambaNova technology. Adapted for the Infercom EU Sovereign AI Inference Platform.*
 

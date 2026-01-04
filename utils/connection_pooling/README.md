@@ -33,7 +33,7 @@ python3 test_connection_pooling.py --api-url <URL> --api-key <KEY> --model <MODE
 #### Example
 ```bash
 python3 test_connection_pooling.py \
-  --api-url https://api.sambanova.ai/v1/chat/completions \
+  --api-url https://api.infercom.ai/v1/chat/completions \
   --api-key your-api-key-here \
   --model Llama-4-Maverick-17B-128E-Instruct \
   --test-duration 100 \

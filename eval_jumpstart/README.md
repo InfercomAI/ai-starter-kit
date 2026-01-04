@@ -1,5 +1,5 @@
 
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
  <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
@@ -14,7 +14,7 @@ A tool for evaluating the performance of LLM APIs using the RAG Evaluation metho
 ## Installation
   
   ```bash
-  git clone https://github.com/sambanova/ai-starter-kit
+  git clone https://github.com/InfercomAI/ai-starter-kit
   cd eval_jumpstart
   python -m venv eval_jumpstart_env
   source eval_jumpstart_env/bin/activate

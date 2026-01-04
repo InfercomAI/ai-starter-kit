@@ -1,4 +1,4 @@
-<a href="https://sambanova.ai/">
+<a href="https://www.infercom.ai/">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../images/light-logo.png" height="100">
   <img alt="SambaNova logo" src="../images/dark-logo.png" height="100">
@@ -12,7 +12,7 @@ This guide walks through setting up an API key, performing a few sample queries 
 
 ## Setting up SambaNova API Key
 
-1. Create an account on the [SambaNova Developer Portal](https://cloud.sambanova.ai/) to get an API key.
+1. Create an account on the [SambaNova Developer Portal](https://cloud.infercom.ai/) to get an API key.
 2. Once logged in, navigate to the API section and generate a new key. 
 3. Set your API key as an environment variable:
    ```shell
@@ -39,7 +39,7 @@ import os
 api_key = os.environ.get("SAMBANOVA_API_KEY")
 
 client = OpenAI(
-    base_url="https://api.sambanova.ai/v1/",
+    base_url="https://api.infercom.ai/v1/",
     api_key=api_key,  
 )
 
@@ -93,12 +93,13 @@ This code snippet demonstrates how to set up a Langchain `ChatSambaNova` instanc
 
 ## Get Help
 
-- Check out the [SambaNova Developer Guide](https://docs.sambanova.ai/cloud/docs/get-started/overview) for additional help
-- Find answers and post questions in the [SambaNova Community](https://community.sambanova.ai/latest)
-- Let us know your most wanted features and challenges via the channels above
+- Check out the [SambaNova Developer Guide](https://docs.sambanova.ai/cloud/docs/get-started/overview) for technical documentation
+- For Infercom-specific support, contact support@infercom.ai (for registered users)
+- For technical questions about SambaNova technology, visit the [SambaNova Community](https://community.sambanova.ai)
+- Create an issue on [GitHub](https://github.com/InfercomAI/ai-starter-kit/issues) for bugs or feature requests
 - More inference models, longer context lengths, and embeddings models are coming soon!
 
   
 ## Contribute
 
-Building something cool? We welcome contributions to the SambaNova Quickstarts repository! If you have ideas for new quickstart projects or improvements to existing ones, please [open an issue](https://github.com/sambanova/ai-starter-kit/issues/new) or submit a [pull request](https://github.com/sambanova/ai-starter-kit/pulls) and we'll respond right away.
+Building something cool? We welcome contributions to the SambaNova Quickstarts repository! If you have ideas for new quickstart projects or improvements to existing ones, please [open an issue](https://github.com/InfercomAI/ai-starter-kit/issues/new) or submit a [pull request](https://github.com/InfercomAI/ai-starter-kit/pulls) and we'll respond right away.

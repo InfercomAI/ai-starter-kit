@@ -143,7 +143,7 @@ class StarterKitTest(unittest.TestCase):
         cls.commit_hash = os.environ.get('GIT_COMMIT_HASH', 'unknown')
 
         # Construct the commit URL
-        cls.commit_url = f'https://github.com/sambanova/ai-starter-kit/commit/{cls.commit_hash}'
+        cls.commit_url = f'https://github.com/InfercomAI/ai-starter-kit/commit/{cls.commit_hash}'
 
         if not cls.is_docker:
             cls.activate_base_venv()

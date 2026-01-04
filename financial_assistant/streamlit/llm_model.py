@@ -7,8 +7,8 @@ from financial_assistant.src.llm import SambaNovaLLM
 
 
 def get_sambanova_llm() -> SambaNovaLLM:
-    api_key = streamlit.session_state.get('SAMBANOVA_API_KEY', '')
-    api_base = streamlit.session_state.get('SAMBANOVA_API_BASE', '')
+    api_key = streamlit.session_state.get('INFERCOM_API_KEY', '')
+    api_base = streamlit.session_state.get('INFERCOM_API_BASE', '')
     cache_key = (api_key, api_base)
     if streamlit.session_state.get('_llm_cache_key') != cache_key:
         streamlit.session_state._llm_cache_key = cache_key
