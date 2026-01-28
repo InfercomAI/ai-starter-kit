@@ -34,10 +34,20 @@ class TiktokenWrapper:
 
     def __init__(self) -> None:
         self.encoding = tiktoken.get_encoding('cl100k_base')
+        self.pad_token: Optional[str] = None  # tiktoken doesn't have pad tokens
 
     def encode(self, text: str) -> List[int]:
         """Encode text to token IDs."""
         return self.encoding.encode(text)
+
+    def tokenize(self, text: str) -> List[str]:
+        """Tokenize text into string tokens (for compatibility with transformers API)."""
+        token_ids = self.encoding.encode(text)
+        return [self.encoding.decode([tid]) for tid in token_ids]
+
+    def convert_tokens_to_string(self, tokens: List[str]) -> str:
+        """Convert a list of string tokens back to a string."""
+        return ''.join(tokens)
 
 
 class LLMPerfResults:
