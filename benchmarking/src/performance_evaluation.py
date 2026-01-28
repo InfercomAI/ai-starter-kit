@@ -21,7 +21,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import numpy as np
 import pandas as pd
-import transformers
 from dotenv import load_dotenv
 from streamlit.runtime.scriptrunner import add_script_run_ctx
 from tqdm import tqdm
@@ -34,7 +33,7 @@ from benchmarking.src.llmperf.llmperf_utils import (
     get_tokenizer,
 )
 from benchmarking.src.llmperf.models import LLMResponse, RequestConfig
-from benchmarking.src.llmperf.sambanova_client import llm_request
+from benchmarking.src.llmperf.infercom_client import llm_request
 from benchmarking.utils import CONFIG_PATH
 
 logging.basicConfig(
@@ -45,7 +44,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 # disable annoying streamlit logging
 logging.getLogger('streamlit.runtime.scriptrunner_utils.script_run_context').disabled = True
-transformers.logging.set_verbosity_error()  # type: ignore[no-untyped-call]
 load_dotenv('../.env', override=True)
 
 SYSTEM_PROMPT_PATH = os.path.join(file_location, '../prompts/system-prompt_template.yaml')

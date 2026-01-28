@@ -5,7 +5,7 @@ import sys
 import time
 from datetime import datetime
 from math import isclose
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Protocol, Tuple
 
 import requests
 import sseclient
@@ -16,7 +16,6 @@ sys.path.append('./src/llmperf')
 import warnings
 
 from dotenv import load_dotenv
-from transformers import AutoTokenizer, PreTrainedTokenizerBase
 
 from benchmarking.src.llmperf import common_metrics
 from benchmarking.src.llmperf.llmperf_utils import get_tokenizer
@@ -26,8 +25,14 @@ from benchmarking.utils import INFERCOM_API_BASE
 warnings.filterwarnings('ignore')
 
 
+class Tokenizer(Protocol):
+    """Protocol for tokenizer interface."""
+
+    def encode(self, text: str) -> List[int]: ...
+
+
 class BaseAPIEndpoint(abc.ABC):
-    def __init__(self, request_config: RequestConfig, tokenizer: PreTrainedTokenizerBase) -> None:
+    def __init__(self, request_config: RequestConfig, tokenizer: Tokenizer) -> None:
         self.request_config = request_config
         self.tokenizer = tokenizer
 
@@ -226,10 +231,10 @@ class BaseAPIEndpoint(abc.ABC):
         return metrics
 
 
-class SambaNovaCloudAPI(BaseAPIEndpoint):
+class InfercomAPI(BaseAPIEndpoint):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        # Load sambanova cloud env variables
+        # Load Infercom API env variables
         if self.request_config.api_variables:
             self.base_url = (
                 self.request_config.api_variables['INFERCOM_API_BASE']
@@ -304,7 +309,7 @@ class SambaNovaCloudAPI(BaseAPIEndpoint):
         return data
 
     def compute_metrics(self, metrics: Dict[str, Any]) -> Tuple[Dict[str, Any], str]:
-        """Computes metrics for SambaNovaCloud endpoint
+        """Computes metrics for Infercom API endpoint
 
         Args:
             metrics (dict): basic metrics dictionary
@@ -387,12 +392,12 @@ class SambaNovaCloudAPI(BaseAPIEndpoint):
         return metrics, generated_text
 
 
-def llm_request(request_config: RequestConfig, tokenizer: AutoTokenizer) -> Tuple[Dict[str, Any], str, RequestConfig]:
+def llm_request(request_config: RequestConfig, tokenizer: Tokenizer) -> Tuple[Dict[str, Any], str, RequestConfig]:
     """Makes a single completion request to a LLM API
 
     Args:
         request_config (RequestConfig): config options including user's prompt and LLM parameters
-        tokenizer (AutoTokenizer): tokenizer for counting tokens
+        tokenizer (Tokenizer): tokenizer for counting tokens
 
     Returns:
         tuple: Metrics about the performance charateristics of the request.
@@ -408,8 +413,8 @@ def llm_request(request_config: RequestConfig, tokenizer: AutoTokenizer) -> Tupl
 
     try:
         if request_config.llm_api == 'sncloud':
-            sncloud_client = SambaNovaCloudAPI(request_config, tokenizer)
-            metrics, generated_text = sncloud_client.compute_metrics(metrics)
+            infercom_client = InfercomAPI(request_config, tokenizer)
+            metrics, generated_text = infercom_client.compute_metrics(metrics)
 
         else:
             raise ValueError(f'llm_api parameter with value {request_config.llm_api} is not valid.')

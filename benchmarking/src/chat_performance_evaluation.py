@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 
 import benchmarking.src.llmperf.llmperf_utils as llmperf_utils
 from benchmarking.src.llmperf.models import RequestConfig
-from benchmarking.src.llmperf.sambanova_client import llm_request
+from benchmarking.src.llmperf.infercom_client import llm_request
 from benchmarking.streamlit.streamlit_utils import set_api_variables
 
 
 class ChatPerformanceEvaluator:
-    """Samba Studio Bundle handler that wraps SamabaNova LLM client to parse output"""
+    """Handler that wraps Infercom LLM client to parse output"""
 
     def __init__(self, model_name: str, llm_api: str, image_path: str, params: Optional[Dict[str, Any]]) -> None:
         self.model = model_name
@@ -20,7 +20,7 @@ class ChatPerformanceEvaluator:
         self.params = params
 
     def generate(self, prompt: str) -> Tuple[Dict[str, Any], str, RequestConfig]:
-        """Generates LLM output in a tuple. It wraps SambaNova LLM client.
+        """Generates LLM output in a tuple. It wraps Infercom LLM client.
 
         Args:
             prompt (str): user's prompt
@@ -90,5 +90,5 @@ if __name__ == '__main__':
     }
 
     handler = ChatPerformanceEvaluator(model_name, llm_api, image_path='', params=params)
-    response = handler.generate(prompt='Tell me about SambaNova in one sentence')
+    response = handler.generate(prompt='Tell me about AI inference in one sentence')
     print(response)
