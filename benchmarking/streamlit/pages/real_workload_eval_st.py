@@ -8,9 +8,10 @@ import yaml
 
 from benchmarking.src.performance_evaluation import RealWorkLoadPerformanceEvaluator
 from benchmarking.streamlit.streamlit_utils import (
-    LLM_API_OPTIONS,
+    DEFAULT_MODEL,
     MULTIMODAL_IMAGE_SIZE_OPTIONS,
     QPS_DISTRIBUTION_OPTIONS,
+    fetch_available_models,
     plot_client_vs_server_barplots,
     plot_dataframe_summary,
     plot_requests_gantt_chart,
@@ -154,23 +155,17 @@ def main() -> None:
         st.title('Configuration')
         st.markdown('**Modify the following parameters before running the process**')
 
-        llm_model = st.text_input(
+        # Fetch available models from API
+        available_models = fetch_available_models()
+
+        llm_model = st.selectbox(
             'Model Name',
-            value='Meta-Llama-3.3-70B-Instruct',
-            help='Look at your model card and introduce the same name \
-                of the model/expert',
+            options=available_models,
+            index=0,
+            help='Select the model to benchmark',
             disabled=st.session_state.running,
         )
-        st.session_state.llm = f'{llm_model}'
-
-        if st.session_state.llm_api == 'sncloud':
-            st.selectbox(
-                'API type',
-                options=list(LLM_API_OPTIONS.keys()),
-                format_func=lambda x: LLM_API_OPTIONS[x],
-                index=0,
-                disabled=True,
-            )
+        st.session_state.llm = llm_model
 
         st.session_state.multimodal_image_size = st.selectbox(
             'Multimodal image size',
@@ -227,11 +222,13 @@ def main() -> None:
         )
 
         st.session_state.timeout = st.number_input(
-            'Timeout', min_value=60, max_value=1800, value=600, step=1, disabled=st.session_state.running
+            'Timeout (s)', min_value=60, max_value=1800, value=600, step=1, disabled=st.session_state.running
         )
 
+        # Check input field directly for Run button (not saved state)
+        api_key_available = bool(st.session_state.get('api_key_input', '') or st.session_state.get('INFERCOM_API_KEY', ''))
         st.session_state.running = st.sidebar.button(
-            'Run!', disabled=st.session_state.running, key='run_button', type='primary', width='stretch'
+            'Run!', disabled=st.session_state.running or not api_key_available, key='run_button', type='primary', width='stretch'
         )
 
         sidebar_stop = st.sidebar.button(

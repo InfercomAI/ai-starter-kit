@@ -12,7 +12,8 @@ from typing import Any, Dict
 from benchmarking.src.chat_performance_evaluation import ChatPerformanceEvaluator
 from benchmarking.src.llmperf import common_metrics
 from benchmarking.streamlit.streamlit_utils import (
-    LLM_API_OPTIONS,
+    DEFAULT_MODEL,
+    fetch_available_models,
     render_logo,
     render_title_icon,
     save_uploaded_file,
@@ -124,22 +125,16 @@ def main() -> None:
         st.title('Set up the LLM')
         st.markdown('**Configure your LLM before starting to chat**')
 
+        # Fetch available models from API
+        available_models = fetch_available_models()
+
         # Show LLM parameters
-        llm_model = st.text_input(
+        llm_selected = st.selectbox(
             'Model Name',
-            value='Meta-Llama-3.3-70B-Instruct',
-            help='Look at the model card and introduce the same name \
-                of the model/expert',
+            options=available_models,
+            index=0,
+            help='Select the model to chat with',
         )
-        llm_selected = f'{llm_model}'
-        if st.session_state.llm_api == 'sncloud':
-            st.selectbox(
-                'API type',
-                options=list(LLM_API_OPTIONS.keys()),
-                format_func=lambda x: LLM_API_OPTIONS[x],
-                index=0,
-                disabled=True,
-            )
 
         st.session_state.uploaded_file = st.file_uploader(
             'Upload image file',
@@ -167,8 +162,10 @@ def main() -> None:
         # st.session_state.top_p = st.slider('Top P', min_value=0.01, max_value=1.00, value=0.95, step=0.01,
         # format="%.2f")
 
+        # Check input field directly for Set up button (not saved state)
+        api_key_available = bool(st.session_state.get('api_key_input', '') or st.session_state.get('INFERCOM_API_KEY', ''))
         # Sets LLM
-        sidebar_run_option = st.sidebar.button('Set up!', type='primary', width='stretch')
+        sidebar_run_option = st.sidebar.button('Set up!', disabled=not api_key_available, type='primary', width='stretch')
 
         # Additional settings
         with st.expander('Additional settings', expanded=True):

@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import requests
 import streamlit as st
 from plotly.graph_objs import Figure
 
@@ -19,6 +20,36 @@ repo_dir = os.path.abspath(os.path.join(kit_dir, '..'))
 LLM_API_OPTIONS = {'sncloud': 'Infercom Inference Service'}
 MULTIMODAL_IMAGE_SIZE_OPTIONS = {'na': 'N/A', 'small': 'Small', 'medium': 'Medium', 'large': 'Large'}
 QPS_DISTRIBUTION_OPTIONS = {'constant': 'Constant', 'uniform': 'Uniform', 'exponential': 'Exponential'}
+
+# Default model to show in the dropdown
+DEFAULT_MODEL = 'Meta-Llama-3.3-70B-Instruct'
+
+
+@st.cache_data(ttl=300)  # Cache for 5 minutes
+def fetch_available_models() -> List[str]:
+    """Fetch available models from the Infercom API.
+
+    Returns:
+        List of model IDs available for inference.
+    """
+    try:
+        response = requests.get(
+            f'{INFERCOM_API_BASE}/models',
+            timeout=10,
+        )
+        response.raise_for_status()
+        data = response.json()
+        models = [model['id'] for model in data.get('data', [])]
+        # Sort models alphabetically, but put default model first if present
+        models.sort()
+        if DEFAULT_MODEL in models:
+            models.remove(DEFAULT_MODEL)
+            models.insert(0, DEFAULT_MODEL)
+        return models if models else [DEFAULT_MODEL]
+    except Exception:
+        return [DEFAULT_MODEL]
+
+
 APP_PAGES = {
     'synthetic_eval': {
         'file_path': 'pages/synthetic_performance_eval_st.py',
@@ -170,9 +201,11 @@ def set_api_variables() -> Dict[str, Any]:
     if st.session_state.prod_mode:
         # Infercom Inference Service
         if st.session_state.llm_api == 'sncloud':
+            # Use input field value directly, fall back to saved value
+            api_key = st.session_state.get('api_key_input', '') or st.session_state.get('INFERCOM_API_KEY', '')
             api_variables = {
                 'INFERCOM_API_BASE': st.session_state.INFERCOM_API_BASE,
-                'INFERCOM_API_KEY': st.session_state.INFERCOM_API_KEY,
+                'INFERCOM_API_KEY': api_key,
             }
         else:
             raise Exception('Only sncloud supported.')

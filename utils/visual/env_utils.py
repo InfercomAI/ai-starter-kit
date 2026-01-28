@@ -64,15 +64,17 @@ def env_input_fields(additional_env_vars: Union[List[str], Dict[str, Any]] = Non
         # If INFERCOM_API_BASE in additional env vars, show it first and then api key
         if 'INFERCOM_API_BASE' in additional_env_vars:
             additional_vars['INFERCOM_API_BASE'] = st.text_input(
-                'INFERCOM API BASE', value=st.session_state.get('INFERCOM_API_BASE', ''), type='password'
+                'INFERCOM API BASE', value=st.session_state.get('INFERCOM_API_BASE', ''), disabled=True
             )
             api_key = st.text_input(
-                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password'
+                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password',
+                key='api_key_input'
             )
         # If INFERCOM_API_BASE not in additional env vars, show api key only
         else:
             api_key = st.text_input(
-                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password'
+                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password',
+                key='api_key_input'
             )
         for var in additional_env_vars:
             # Skip INFERCOM_API_BASE since it has been handled above
@@ -84,15 +86,17 @@ def env_input_fields(additional_env_vars: Union[List[str], Dict[str, Any]] = Non
         # If INFERCOM_API_BASE in additional env vars, show it first and then  api key
         if 'INFERCOM_API_BASE' in additional_env_vars:
             additional_vars['INFERCOM_API_BASE'] = st.text_input(
-                'INFERCOM API BASE', value=st.session_state.get('INFERCOM_API_BASE', ''), type='password'
+                'INFERCOM API BASE', value=st.session_state.get('INFERCOM_API_BASE', ''), disabled=True
             )
             api_key = st.text_input(
-                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password'
+                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password',
+                key='api_key_input'
             )
         # If INFERCOM_API_BASE not in additional env vars, show cloud api key only
         else:
             api_key = st.text_input(
-                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password'
+                'INFERCOM API KEY', value=st.session_state.get('INFERCOM_API_KEY', ''), type='password',
+                key='api_key_input'
             )
         for key, val in additional_env_vars.items():
             # Skip INFERCOM_API_BASE since it has been handled above
@@ -107,7 +111,8 @@ def are_credentials_set(additional_env_vars: Optional[Union[List[str], Dict[str,
     if additional_env_vars is None:
         additional_env_vars = []
 
-    base_creds_set = bool(st.session_state.INFERCOM_API_KEY)
+    # Only check saved credentials (not input field) - used for form visibility
+    base_creds_set = bool(st.session_state.get('INFERCOM_API_KEY', ''))
 
     if isinstance(additional_env_vars, List):
         additional_creds_set = all(bool(st.session_state.get(var, '')) for var in additional_env_vars)
