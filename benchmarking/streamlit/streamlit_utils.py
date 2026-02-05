@@ -1,4 +1,3 @@
-import base64
 import os
 from typing import Any, Dict, List, Optional
 
@@ -16,6 +15,37 @@ from utils.visual.env_utils import are_credentials_set, env_input_fields, initia
 current_dir = os.path.dirname(os.path.abspath(__file__))
 kit_dir = os.path.abspath(os.path.join(current_dir, '..'))
 repo_dir = os.path.abspath(os.path.join(kit_dir, '..'))
+
+# === Infercom Brand Colors (from Infercom_Color_System.pdf) ===
+BRAND_GREEN = '#1FA85F'
+BRAND_GREEN_LIGHT = '#40B577'
+BRAND_GREEN_DARK = '#18864C'
+BRAND_GREEN_EXTRA_LIGHT = '#78CA9F'
+
+BRAND_BLUE = '#0B7FDE'
+BRAND_BLUE_DARK = '#0865B1'
+
+BRAND_ORANGE = '#E67E22'
+BRAND_ORANGE_DARK = '#B8641B'
+
+BRAND_CHARCOAL = '#2D2D2D'
+BRAND_CHARCOAL_LIGHT = '#4C4C4C'
+BRAND_CHARCOAL_DARK = '#242424'
+
+BRAND_TEXT = '#FAFAFA'
+BRAND_TEXT_SECONDARY = '#E0E0E0'
+
+# Chart colors: Server=Blue (technology), Client=Orange (performance)
+CHART_COLOR_SERVER = BRAND_BLUE
+CHART_COLOR_CLIENT = BRAND_ORANGE
+
+# Data visualization color sequence (official brand order)
+BRAND_DATAVIZ_COLORS = [BRAND_GREEN, BRAND_BLUE, BRAND_ORANGE, BRAND_GREEN_LIGHT, '#2F92E2']
+
+# Brand assets CDN
+BRAND_CDN = 'https://infercomai.github.io/brand-assets'
+BRAND_FAVICON = f'{BRAND_CDN}/favicons/favicon-96x96.png'
+BRAND_LOGO_WHITE = f'{BRAND_CDN}/logos/infercom-logo-white-400px.png'
 
 LLM_API_OPTIONS = {'sncloud': 'Infercom Inference Service'}
 MULTIMODAL_IMAGE_SIZE_OPTIONS = {'na': 'N/A', 'small': 'Small', 'medium': 'Medium', 'large': 'Large'}
@@ -75,31 +105,96 @@ APP_PAGES = {
 
 
 def render_logo() -> None:
-    # Inject HTML to display the logo in the sidebar at 70% width
-    logo_path = os.path.join(repo_dir, 'images', 'dark-logo.png')
-    with open(logo_path, 'rb') as img_file:
-        encoded = base64.b64encode(img_file.read()).decode()
+    """Render the Infercom logo in the sidebar, loaded from the brand assets CDN."""
     st.sidebar.markdown(
         f"""
-        <div style="text-align: center;">
-            <img src="data:image/png;base64,{encoded}" style="width:60%; display: block; max-width:100%;">
+        <div style="text-align: center; padding: 0.5rem 0 1rem 0;">
+            <a href="https://www.infercom.ai" target="_blank" rel="noopener noreferrer">
+                <img src="{BRAND_LOGO_WHITE}"
+                     alt="Infercom"
+                     style="width: 60%; display: block; margin: 0 auto; max-width: 100%;">
+            </a>
         </div>
-    """,
+        """,
         unsafe_allow_html=True,
     )
 
 
 def set_font() -> None:
-    # Load Inter font from Google Fonts and apply globally
+    """Load Roboto font from Google Fonts and apply brand styling globally."""
     st.markdown(
-        """
-        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+        f"""
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
         <style>
-            /* Apply Exile font to all elements on the page */
-            html, body, [class^="css"] :not(.material-icons) {
-                font-family: 'Inter', sans-serif !important;
-            }
+            /* Infercom Brand CSS Custom Properties */
+            :root {{
+                --infercom-green: {BRAND_GREEN};
+                --infercom-green-light: {BRAND_GREEN_LIGHT};
+                --infercom-green-dark: {BRAND_GREEN_DARK};
+                --infercom-blue: {BRAND_BLUE};
+                --infercom-orange: {BRAND_ORANGE};
+                --infercom-charcoal: {BRAND_CHARCOAL};
+                --infercom-charcoal-dark: {BRAND_CHARCOAL_DARK};
+                --infercom-text: {BRAND_TEXT};
+                --infercom-text-secondary: {BRAND_TEXT_SECONDARY};
+            }}
+
+            /* Apply Roboto font globally */
+            html, body, [class^="css"] :not(.material-icons) {{
+                font-family: 'Roboto', sans-serif !important;
+            }}
+
+            /* Primary button styling (green) */
+            .stButton > button[kind="primary"],
+            button[data-testid="stBaseButton-primary"] {{
+                background-color: {BRAND_GREEN} !important;
+                border-color: {BRAND_GREEN} !important;
+                color: #FFFFFF !important;
+                font-family: 'Roboto', sans-serif !important;
+                font-weight: 500 !important;
+                border-radius: 6px !important;
+                transition: background-color 0.2s ease !important;
+            }}
+            .stButton > button[kind="primary"]:hover,
+            button[data-testid="stBaseButton-primary"]:hover {{
+                background-color: {BRAND_GREEN_DARK} !important;
+                border-color: {BRAND_GREEN_DARK} !important;
+            }}
+
+            /* Secondary button styling (outline green) */
+            .stButton > button[kind="secondary"],
+            button[data-testid="stBaseButton-secondary"] {{
+                border-color: {BRAND_GREEN} !important;
+                color: {BRAND_GREEN} !important;
+                font-family: 'Roboto', sans-serif !important;
+                font-weight: 500 !important;
+                border-radius: 6px !important;
+                background-color: transparent !important;
+            }}
+            .stButton > button[kind="secondary"]:hover,
+            button[data-testid="stBaseButton-secondary"]:hover {{
+                border-color: {BRAND_GREEN_LIGHT} !important;
+                color: {BRAND_GREEN_LIGHT} !important;
+            }}
+
+            /* Download button styling (blue) */
+            .stDownloadButton > button {{
+                background-color: {BRAND_BLUE} !important;
+                border-color: {BRAND_BLUE} !important;
+                color: #FFFFFF !important;
+                font-family: 'Roboto', sans-serif !important;
+                border-radius: 6px !important;
+            }}
+            .stDownloadButton > button:hover {{
+                background-color: {BRAND_BLUE_DARK} !important;
+                border-color: {BRAND_BLUE_DARK} !important;
+            }}
+
+            /* Progress bar brand color */
+            .stProgress > div > div > div {{
+                background-color: {BRAND_GREEN} !important;
+            }}
         </style>
         """,
         unsafe_allow_html=True,
@@ -107,7 +202,7 @@ def set_font() -> None:
 
 
 def render_title_icon(title: str, icon: Optional[str] = None) -> None:
-    # add title and icon
+    """Render a branded page title with optional icon."""
     if icon is not None:
         col1, col2, col3 = st.columns([3, 1, 3])
         with col2:
@@ -117,14 +212,25 @@ def render_title_icon(title: str, icon: Optional[str] = None) -> None:
         <style>
             .kit-title {{
                 text-align: center;
-                color: #1FA85F !important;
-                font-size: 3.0em;
-                font-weight: bold;
-                margin-bottom: 0.5em;
+                color: {BRAND_GREEN_LIGHT} !important;
+                font-size: 2.6em;
+                font-weight: 700;
+                font-family: 'Roboto', sans-serif !important;
+                margin-bottom: 0.2em;
+                letter-spacing: -0.01em;
+            }}
+            .kit-subtitle {{
+                text-align: center;
+                color: {BRAND_TEXT_SECONDARY} !important;
+                font-size: 0.95em;
+                font-weight: 300;
+                font-family: 'Roboto', sans-serif !important;
+                margin-bottom: 1.5em;
             }}
         </style>
         <div class="kit-title">{title}</div>
-    """,
+        <div class="kit-subtitle">Powered by Infercom &mdash; EU Sovereign AI Inference</div>
+        """,
         unsafe_allow_html=True,
     )
 
@@ -215,6 +321,44 @@ def set_api_variables() -> Dict[str, Any]:
     return api_variables
 
 
+def _get_infercom_plotly_template() -> go.layout.Template:
+    """Return a custom Plotly template with Infercom brand colors."""
+    return go.layout.Template(
+        layout={
+            'paper_bgcolor': BRAND_CHARCOAL,
+            'plot_bgcolor': BRAND_CHARCOAL_DARK,
+            'font': {
+                'family': 'Roboto, sans-serif',
+                'color': BRAND_TEXT,
+            },
+            'title': {
+                'font': {
+                    'family': 'Roboto, sans-serif',
+                    'color': BRAND_TEXT,
+                    'size': 16,
+                },
+            },
+            'xaxis': {
+                'gridcolor': BRAND_CHARCOAL_LIGHT,
+                'zerolinecolor': BRAND_CHARCOAL_LIGHT,
+            },
+            'yaxis': {
+                'gridcolor': BRAND_CHARCOAL_LIGHT,
+                'zerolinecolor': BRAND_CHARCOAL_LIGHT,
+            },
+            'colorway': BRAND_DATAVIZ_COLORS,
+            'legend': {
+                'font': {
+                    'color': BRAND_TEXT_SECONDARY,
+                },
+            },
+        }
+    )
+
+
+INFERCOM_PLOTLY_TEMPLATE = _get_infercom_plotly_template()
+
+
 def plot_dataframe_summary(df_req_info: pd.DataFrame) -> Figure:
     """
     Plots a throughput summary across all batch sizes
@@ -273,7 +417,7 @@ def plot_dataframe_summary(df_req_info: pd.DataFrame) -> Figure:
         y='Total output throughput (tokens per second)',
         color='Side type',
         barmode='group',
-        color_discrete_sequence=['#325c8c', '#ee7625'],
+        color_discrete_sequence=[CHART_COLOR_SERVER, CHART_COLOR_CLIENT],
         text='Total output throughput (tokens per second)',
     )
 
@@ -281,7 +425,7 @@ def plot_dataframe_summary(df_req_info: pd.DataFrame) -> Figure:
 
     fig.update_layout(
         title_text='Total output throughput per batch size',
-        template='plotly_dark',
+        template=INFERCOM_PLOTLY_TEMPLATE,
     )
     return fig
 
@@ -341,7 +485,7 @@ def plot_client_vs_server_barplots(
             y=[0 for _ in xgroups],
             base=[round(valsl[i][1], 2) for i in xgroups],
             customdata=[legend_labels[0] for _ in xgroups],
-            marker={'color': '#325c8c', 'line': {'color': '#325c8c', 'width': 2}},
+            marker={'color': CHART_COLOR_SERVER, 'line': {'color': CHART_COLOR_SERVER, 'width': 2}},
             offsetgroup=0,
             legendgroup=legend_labels[0],
             name=legend_labels[0],
@@ -357,7 +501,7 @@ def plot_client_vs_server_barplots(
             y=[valsl[i][2] - valsl[i][0] for i in xgroups],
             base=[valsl[i][0] for i in xgroups],
             customdata=[valsl[i][2] for i in xgroups],
-            marker={'color': '#325c8c'},
+            marker={'color': CHART_COLOR_SERVER},
             opacity=0.5,
             offsetgroup=0,
             legendgroup=legend_labels[0],
@@ -371,7 +515,7 @@ def plot_client_vs_server_barplots(
             y=[0 for _ in xgroups],
             base=[round(valsr[i][1], 2) for i in xgroups],
             customdata=[legend_labels[1] for _ in xgroups],
-            marker={'color': '#ee7625', 'line': {'color': '#ee7625', 'width': 2}},
+            marker={'color': CHART_COLOR_CLIENT, 'line': {'color': CHART_COLOR_CLIENT, 'width': 2}},
             offsetgroup=1,
             legendgroup=legend_labels[1],
             name=legend_labels[1],
@@ -387,7 +531,7 @@ def plot_client_vs_server_barplots(
             y=[valsr[i][2] - valsr[i][0] for i in xgroups],
             base=[valsr[i][0] for i in xgroups],
             customdata=[valsr[i][2] for i in xgroups],
-            marker={'color': '#ee7625'},
+            marker={'color': CHART_COLOR_CLIENT},
             opacity=0.5,
             offsetgroup=1,
             legendgroup=legend_labels[1],
@@ -401,7 +545,7 @@ def plot_client_vs_server_barplots(
         xaxis_title=xaxis_title,
         yaxis_title=yaxis_title,
         barmode='group',
-        template='plotly_dark',
+        template=INFERCOM_PLOTLY_TEMPLATE,
         hovermode='x unified',
     )
 
@@ -429,7 +573,7 @@ def plot_requests_gantt_chart(df_user: pd.DataFrame) -> Figure:
             base=[str(x) for x in df_user['start_time']],
             name='TTFT',
             orientation='h',
-            marker_color='#ee7625',
+            marker_color=CHART_COLOR_CLIENT,
         )
     )
     fig.add_trace(
@@ -439,7 +583,7 @@ def plot_requests_gantt_chart(df_user: pd.DataFrame) -> Figure:
             base=[str(x) for x in df_user['start_time']],
             name='End-to-end latency',
             orientation='h',
-            marker_color='#325c8c',
+            marker_color=CHART_COLOR_SERVER,
         )
     )
     for i in range(0, len(df_user.index), 2):
@@ -453,6 +597,6 @@ def plot_requests_gantt_chart(df_user: pd.DataFrame) -> Figure:
         title_text='LLM requests across time',
         xaxis_title='Time stamp',
         yaxis_title='Request index',
-        template='plotly_dark',
+        template=INFERCOM_PLOTLY_TEMPLATE,
     )
     return fig

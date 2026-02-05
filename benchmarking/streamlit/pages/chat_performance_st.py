@@ -12,6 +12,7 @@ from typing import Any, Dict
 from benchmarking.src.chat_performance_evaluation import ChatPerformanceEvaluator
 from benchmarking.src.llmperf import common_metrics
 from benchmarking.streamlit.streamlit_utils import (
+    BRAND_FAVICON,
     DEFAULT_MODEL,
     fetch_available_models,
     render_logo,
@@ -249,8 +250,8 @@ def main() -> None:
 
 if __name__ == '__main__':
     st.set_page_config(
-        page_title='AI Starter Kit',
-        page_icon=os.path.join(repo_dir, 'images', 'icon.svg'),
+        page_title='Infercom Benchmark',
+        page_icon=BRAND_FAVICON,
     )
 
     _initialize_sesion_variables()

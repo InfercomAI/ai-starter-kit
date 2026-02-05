@@ -13,7 +13,7 @@ import warnings
 import streamlit as st
 from dotenv import load_dotenv
 
-from benchmarking.streamlit.streamlit_utils import APP_PAGES, find_pages_to_show, render_logo, set_font
+from benchmarking.streamlit.streamlit_utils import APP_PAGES, BRAND_FAVICON, find_pages_to_show, render_logo, set_font
 from benchmarking.utils import CONFIG_PATH
 from utils.events.mixpanel import MixpanelEvents
 
@@ -95,8 +95,8 @@ if __name__ == '__main__':
         pg = st.navigation([synthetic_page, real_page, custom_page, chat_page])
 
     st.set_page_config(
-        page_title='AI Starter Kit',
-        page_icon=os.path.join(repo_dir, 'images', 'icon.svg'),
+        page_title='Infercom Benchmark',
+        page_icon=BRAND_FAVICON,
     )
 
     _init()

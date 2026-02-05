@@ -8,6 +8,7 @@ import yaml
 
 from benchmarking.src.performance_evaluation import RealWorkLoadPerformanceEvaluator
 from benchmarking.streamlit.streamlit_utils import (
+    BRAND_FAVICON,
     DEFAULT_MODEL,
     MULTIMODAL_IMAGE_SIZE_OPTIONS,
     QPS_DISTRIBUTION_OPTIONS,
@@ -319,8 +320,8 @@ def main() -> None:
 
 if __name__ == '__main__':
     st.set_page_config(
-        page_title='AI Starter Kit',
-        page_icon=os.path.join(repo_dir, 'images', 'icon.svg'),
+        page_title='Infercom Benchmark',
+        page_icon=BRAND_FAVICON,
     )
 
     _initialize_session_variables()
