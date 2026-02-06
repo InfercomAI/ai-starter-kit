@@ -123,11 +123,10 @@ def _run_custom_performance_evaluation(progress_bar: Any = None) -> pd.DataFrame
 def main() -> None:
     set_font()
 
-    render_title_icon('Custom Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.png'))
+    render_title_icon('Custom Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.svg'))
     st.markdown(
-        'Here you can select a custom dataset that you want to benchmark performance with. Note that with models that \
-          support dynamic batching, you are limited to the number of cpus available on your machine to send concurrent \
-              requests.'
+        """Upload your own dataset to benchmark performance with prompts that match your use case.
+        The number of concurrent requests is limited by the available CPU cores on your machine."""
     )
 
     with st.sidebar:

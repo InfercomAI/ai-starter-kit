@@ -112,10 +112,10 @@ def _initialize_sesion_variables() -> None:
 def main() -> None:
     set_font()
 
-    render_title_icon('Chat Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.png'))
+    render_title_icon('Chat Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.svg'))
     st.markdown(
-        """With this option, users have a way to know performance metrics per response. Set your LLM first on the left
-        side bar and then have a nice conversation, also know more about our performance metrics per each response."""
+        """Chat with a model and see real-time performance metrics for each response — including time to first token,
+        throughput, and latency. Configure your model in the sidebar to get started."""
     )
 
     with st.sidebar:

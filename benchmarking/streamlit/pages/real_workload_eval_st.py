@@ -130,23 +130,19 @@ def _run_performance_evaluation(progress_bar: Any = None) -> pd.DataFrame:
 def main() -> None:
     set_font()
 
-    render_title_icon('Real Workload Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.png'))
+    render_title_icon('Real Workload Performance Evaluation', os.path.join(repo_dir, 'images', 'benchmark_icon.svg'))
     st.markdown(
-        """This performance evaluation assesses the following LLM's performance metrics using requests sent 
-        as close as real workload scenarios. _client represents the metrics computed from the client-side 
-        (includes queue and round-trip time from host to server and back) 
-        and _server represents the metrics computed from the server-side."""
+        """This benchmark uses realistic request patterns — varying prompt lengths and arrival times — to simulate
+        how the model performs under real-world conditions. Results are shown from two perspectives: **_client**
+        metrics include network latency and queuing time, while **_server** metrics reflect pure inference
+        performance as reported by the API."""
     )
     st.markdown(
-        """**Time to first token (TTFT):** This metric is driven by the time required to process the prompt and then
-        generate the first output token."""
+        """**Time to First Token (TTFT)** — How quickly the model starts responding after receiving your prompt.
+        **End-to-End Latency** — Total time from sending a request to receiving the complete response.
+        **Output Throughput (tokens/sec/request)** — How many tokens the model generates per second for a single request.
+        **Throughput (tokens/sec)** — Total token generation rate across all concurrent requests."""
     )
-    st.markdown('**E2E Latency:** TTFT + (Time per Output Token) * (the number of tokens to be generated - 1)')
-    st.markdown(
-        """**Tokens/sec/request (Output Throughput)**: Number of output tokens generated per second per request 
-        for a given batch-size. Client metric is calculated as *Number of Output Tokens / (E2E Latency - TTFT)*"""
-    )
-    st.markdown("""**Tokens/sec (Throughput)**: Total number of tokens generated per second for a given batch-size.""")
 
     with st.sidebar:
         # Set up credentials and API variables
