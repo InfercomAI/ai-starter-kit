@@ -28,9 +28,9 @@ BRAND_BLUE_DARK = '#0865B1'
 BRAND_ORANGE = '#E67E22'
 BRAND_ORANGE_DARK = '#B8641B'
 
-BRAND_CHARCOAL = '#262626'
-BRAND_CHARCOAL_LIGHT = '#333340'
-BRAND_CHARCOAL_DARK = '#1A1A2E'
+BRAND_CHARCOAL = '#2D2D2D'
+BRAND_CHARCOAL_LIGHT = '#4C4C4C'
+BRAND_CHARCOAL_DARK = '#242424'
 
 BRAND_TEXT = '#FAFAFA'
 BRAND_TEXT_SECONDARY = '#E0E0E0'
@@ -199,97 +199,131 @@ def set_font() -> None:
                 font-family: 'Roboto', sans-serif !important;
             }}
 
-            /* ── Sidebar styling ── */
+            /* ── Sidebar styling (Green Dark brand color) ── */
             section[data-testid="stSidebar"] {{
-                background-color: {BRAND_CHARCOAL_DARK} !important;
-                border-right: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+                background-color: {BRAND_GREEN_DARK} !important;
+                border-right: 1px solid {BRAND_GREEN}44 !important;
             }}
 
-            /* Sidebar section headers — green left accent bar */
+            /* Sidebar section headers — white left accent bar on green bg */
             section[data-testid="stSidebar"] .stHeading h1,
             section[data-testid="stSidebar"] .stHeading h2,
             section[data-testid="stSidebar"] .stHeading h3,
             section[data-testid="stSidebar"] .stMarkdown h1,
             section[data-testid="stSidebar"] .stMarkdown h2,
             section[data-testid="stSidebar"] .stMarkdown h3 {{
-                border-left: 3px solid {BRAND_GREEN} !important;
+                border-left: 3px solid #FFFFFF !important;
                 padding-left: 0.6rem !important;
                 margin-top: 1.2rem !important;
                 margin-bottom: 0.4rem !important;
                 font-weight: 500 !important;
                 letter-spacing: -0.01em !important;
+                color: #FFFFFF !important;
             }}
 
-            /* Nav separator — green gradient line */
+            /* Nav separator — white translucent line on green bg */
             [data-testid="stSidebarNavSeparator"] {{
                 border-bottom: none !important;
-                background: linear-gradient(90deg, {BRAND_GREEN}44, transparent) !important;
+                background: linear-gradient(90deg, rgba(255,255,255,0.25), transparent) !important;
                 height: 1px !important;
                 margin: 0.5rem 0 !important;
             }}
 
-            /* Sidebar horizontal rules — subtle green gradient */
+            /* Sidebar horizontal rules */
             section[data-testid="stSidebar"] hr {{
                 border: none !important;
                 height: 1px !important;
-                background: linear-gradient(90deg, {BRAND_GREEN}44, transparent) !important;
+                background: linear-gradient(90deg, rgba(255,255,255,0.25), transparent) !important;
                 margin: 0.8rem 0 !important;
             }}
 
+            /* Sidebar text — ensure white on green */
+            section[data-testid="stSidebar"] {{
+                color: #FFFFFF !important;
+            }}
+            section[data-testid="stSidebar"] .stMarkdown {{
+                color: #FFFFFF !important;
+            }}
+            section[data-testid="stSidebar"] .stMarkdown p,
+            section[data-testid="stSidebar"] .stMarkdown span {{
+                color: #FFFFFF !important;
+            }}
+            section[data-testid="stSidebar"] .stMarkdown a {{
+                color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+            }}
+
             /* ── Input fields ── */
-            /* Text inputs, number inputs, select boxes */
+            /* Sidebar inputs: charcoal dark on green sidebar */
             section[data-testid="stSidebar"] .stTextInput input,
-            section[data-testid="stSidebar"] .stNumberInput input,
-            section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"],
+            section[data-testid="stSidebar"] .stNumberInput input {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+                border: 1px solid rgba(255,255,255,0.2) !important;
+                border-radius: 6px !important;
+                color: {BRAND_TEXT} !important;
+                transition: border-color 0.2s ease !important;
+            }}
+            /* Main area inputs */
             .stTextInput input,
             .stNumberInput input {{
-                background-color: #1E1E2A !important;
+                background-color: {BRAND_CHARCOAL_DARK} !important;
                 border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
                 border-radius: 6px !important;
                 color: {BRAND_TEXT} !important;
                 transition: border-color 0.2s ease !important;
             }}
 
-            /* Input focus state — green glow */
+            /* Input focus state */
             section[data-testid="stSidebar"] .stTextInput input:focus,
-            section[data-testid="stSidebar"] .stNumberInput input:focus,
+            section[data-testid="stSidebar"] .stNumberInput input:focus {{
+                border-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+                box-shadow: 0 0 0 1px {BRAND_GREEN_EXTRA_LIGHT}40 !important;
+            }}
             .stTextInput input:focus,
             .stNumberInput input:focus {{
                 border-color: {BRAND_GREEN} !important;
                 box-shadow: 0 0 0 1px {BRAND_GREEN}40 !important;
             }}
 
-            /* Selectbox container styling */
-            [data-baseweb="select"] {{
-                background-color: #1E1E2A !important;
+            /* Selectbox container — dark on green sidebar */
+            section[data-testid="stSidebar"] [data-baseweb="select"] {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
                 border-radius: 6px !important;
             }}
-            [data-baseweb="select"] > div {{
-                background-color: #1E1E2A !important;
-                border-color: {BRAND_CHARCOAL_LIGHT} !important;
+            section[data-testid="stSidebar"] [data-baseweb="select"] > div {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+                border-color: rgba(255,255,255,0.2) !important;
                 border-radius: 6px !important;
             }}
-            [data-baseweb="select"] > div:hover {{
-                border-color: {BRAND_GREEN}88 !important;
+            section[data-testid="stSidebar"] [data-baseweb="select"] > div:hover {{
+                border-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
             }}
 
             /* Selectbox dropdown menu */
             [data-baseweb="popover"] {{
-                background-color: #1E1E2A !important;
+                background-color: {BRAND_CHARCOAL_DARK} !important;
                 border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
                 border-radius: 6px !important;
             }}
             [data-baseweb="popover"] li {{
-                background-color: #1E1E2A !important;
+                background-color: {BRAND_CHARCOAL_DARK} !important;
             }}
             [data-baseweb="popover"] li:hover {{
-                background-color: {BRAND_GREEN}18 !important;
+                background-color: {BRAND_GREEN_DARK} !important;
             }}
             [role="option"][aria-selected="true"] {{
-                background-color: {BRAND_GREEN}22 !important;
+                background-color: {BRAND_GREEN_DARK} !important;
             }}
 
-            /* Number input +/- buttons */
+            /* Number input +/- buttons on green sidebar */
+            section[data-testid="stSidebar"] .stNumberInput button {{
+                border-color: rgba(255,255,255,0.2) !important;
+                color: #FFFFFF !important;
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+            }}
+            section[data-testid="stSidebar"] .stNumberInput button:hover {{
+                border-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+                color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+            }}
             .stNumberInput button {{
                 border-color: {BRAND_CHARCOAL_LIGHT} !important;
                 color: {BRAND_TEXT_SECONDARY} !important;
@@ -300,6 +334,18 @@ def set_font() -> None:
             }}
 
             /* ── Labels ── */
+            /* Sidebar labels: white on green */
+            section[data-testid="stSidebar"] .stSelectbox label,
+            section[data-testid="stSidebar"] .stTextInput label,
+            section[data-testid="stSidebar"] .stNumberInput label,
+            section[data-testid="stSidebar"] .stSlider label {{
+                color: rgba(255,255,255,0.85) !important;
+                font-size: 0.85rem !important;
+                font-weight: 400 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.04em !important;
+            }}
+            /* Main area labels */
             .stSelectbox label,
             .stTextInput label,
             .stNumberInput label,
@@ -379,7 +425,25 @@ def set_font() -> None:
                 background: {BRAND_GREEN}88;
             }}
 
-            /* ── Primary button styling (green) ── */
+            /* ── Primary button styling ── */
+            /* On green sidebar: white button */
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"],
+            section[data-testid="stSidebar"] button[data-testid="stBaseButton-primary"] {{
+                background-color: #FFFFFF !important;
+                border-color: #FFFFFF !important;
+                color: {BRAND_GREEN_DARK} !important;
+                font-family: 'Roboto', sans-serif !important;
+                font-weight: 600 !important;
+                border-radius: 6px !important;
+                transition: all 0.2s ease !important;
+            }}
+            section[data-testid="stSidebar"] .stButton > button[kind="primary"]:hover,
+            section[data-testid="stSidebar"] button[data-testid="stBaseButton-primary"]:hover {{
+                background-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+                border-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+                color: {BRAND_GREEN_DARK} !important;
+            }}
+            /* Main area: green button */
             .stButton > button[kind="primary"],
             button[data-testid="stBaseButton-primary"] {{
                 background-color: {BRAND_GREEN} !important;
@@ -397,7 +461,23 @@ def set_font() -> None:
                 box-shadow: 0 2px 8px {BRAND_GREEN}30 !important;
             }}
 
-            /* Secondary button styling (outline green) */
+            /* Secondary button styling — white outline on green sidebar */
+            section[data-testid="stSidebar"] .stButton > button[kind="secondary"],
+            section[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"] {{
+                border-color: #FFFFFF !important;
+                color: #FFFFFF !important;
+                font-family: 'Roboto', sans-serif !important;
+                font-weight: 500 !important;
+                border-radius: 6px !important;
+                background-color: transparent !important;
+                transition: all 0.2s ease !important;
+            }}
+            section[data-testid="stSidebar"] .stButton > button[kind="secondary"]:hover,
+            section[data-testid="stSidebar"] button[data-testid="stBaseButton-secondary"]:hover {{
+                border-color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+                color: {BRAND_GREEN_EXTRA_LIGHT} !important;
+            }}
+            /* Secondary button in main area — green outline */
             .stButton > button[kind="secondary"],
             button[data-testid="stBaseButton-secondary"] {{
                 border-color: {BRAND_GREEN} !important;
@@ -435,16 +515,17 @@ def set_font() -> None:
                 background-color: {BRAND_GREEN} !important;
             }}
 
-            /* ── Navigation styling ── */
+            /* ── Navigation styling on green sidebar ── */
             section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a {{
                 border-radius: 6px !important;
                 transition: background-color 0.15s ease !important;
+                color: #FFFFFF !important;
             }}
             section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {{
-                background-color: {BRAND_GREEN}12 !important;
+                background-color: rgba(255,255,255,0.1) !important;
             }}
             section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-selected="true"] {{
-                background-color: {BRAND_GREEN}20 !important;
+                background-color: rgba(255,255,255,0.15) !important;
             }}
         </style>
         """,
