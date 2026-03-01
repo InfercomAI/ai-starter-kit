@@ -16,7 +16,6 @@ from benchmarking.streamlit.streamlit_utils import (
     plot_client_vs_server_barplots,
     plot_dataframe_summary,
     plot_requests_gantt_chart,
-    render_logo,
     render_title_icon,
     save_uploaded_file,
     set_api_variables,
@@ -135,7 +134,6 @@ def main() -> None:
         # Set up credentials and API variables
         setup_credentials()
 
-        render_logo()
         ##################
         # File Selection #
         ##################

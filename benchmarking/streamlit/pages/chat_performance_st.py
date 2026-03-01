@@ -17,7 +17,6 @@ from benchmarking.streamlit.streamlit_utils import (
     MODEL_SELECTOR_HELP,
     fetch_available_models,
     format_model_name,
-    render_logo,
     render_title_icon,
     save_uploaded_file,
     set_font,
@@ -124,7 +123,6 @@ def main() -> None:
         # Set up credentials and API variables
         setup_credentials()
 
-        render_logo()
         st.title('Set up the LLM')
         st.markdown('**Configure your LLM before starting to chat**')
 
