@@ -52,32 +52,79 @@ MULTIMODAL_IMAGE_SIZE_OPTIONS = {'na': 'N/A', 'small': 'Small', 'medium': 'Mediu
 QPS_DISTRIBUTION_OPTIONS = {'constant': 'Constant', 'uniform': 'Uniform', 'exponential': 'Exponential'}
 
 # Default model to show in the dropdown
-DEFAULT_MODEL = 'Meta-Llama-3.3-70B-Instruct'
+DEFAULT_MODEL = 'gpt-oss-120b'
+
+# Region display labels for the model selector
+_REGION_FLAG = {
+    'EU': '\U0001F1EA\U0001F1FA',  # 🇪🇺
+}
+_GLOBAL_FLAG = '\U0001F310'  # 🌐
 
 
 @st.cache_data(ttl=300)  # Cache for 5 minutes
 def fetch_available_models() -> List[str]:
-    """Fetch available models from the Infercom API.
+    """Fetch available models from the Infercom API, grouped by region.
+
+    EU sovereign models are listed first, followed by Global Catalog models.
 
     Returns:
         List of model IDs available for inference.
     """
     try:
         response = requests.get(
-            f'{INFERCOM_API_BASE}/models',
+            f'{INFERCOM_API_BASE}/models?verbose=true',
             timeout=10,
         )
         response.raise_for_status()
         data = response.json()
-        models = [model['id'] for model in data.get('data', [])]
-        # Sort models alphabetically, but put default model first if present
-        models.sort()
-        if DEFAULT_MODEL in models:
-            models.remove(DEFAULT_MODEL)
-            models.insert(0, DEFAULT_MODEL)
+
+        eu_models = []
+        global_models = []
+        for model in data.get('data', []):
+            model_id = model['id']
+            region = (model.get('sn_metadata') or {}).get('region', '')
+            if region == 'EU':
+                eu_models.append(model_id)
+            else:
+                global_models.append(model_id)
+
+        eu_models.sort()
+        global_models.sort()
+
+        # EU models first, then global — default model at the top of its group
+        if DEFAULT_MODEL in eu_models:
+            eu_models.remove(DEFAULT_MODEL)
+            eu_models.insert(0, DEFAULT_MODEL)
+        elif DEFAULT_MODEL in global_models:
+            global_models.remove(DEFAULT_MODEL)
+            global_models.insert(0, DEFAULT_MODEL)
+
+        models = eu_models + global_models
+
+        # Store region metadata in session state for format_func
+        region_map = {}
+        for model in data.get('data', []):
+            region = (model.get('sn_metadata') or {}).get('region', '')
+            region_map[model['id']] = region
+        st.session_state['_model_regions'] = region_map
+
         return models if models else [DEFAULT_MODEL]
     except Exception:
         return [DEFAULT_MODEL]
+
+
+def format_model_name(model_id: str) -> str:
+    """Format a model ID for display in the selector with region flag.
+
+    Use as format_func in st.selectbox to show flags without altering the value.
+    """
+    region_map = st.session_state.get('_model_regions', {})
+    region = region_map.get(model_id, '')
+    if region == 'EU':
+        return f'{_REGION_FLAG["EU"]} {model_id}'
+    elif region:
+        return f'{_GLOBAL_FLAG} {model_id} ({region})'
+    return model_id
 
 
 APP_PAGES = {

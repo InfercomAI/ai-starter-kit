@@ -15,6 +15,7 @@ from benchmarking.streamlit.streamlit_utils import (
     DEFAULT_MODEL,
     MULTIMODAL_IMAGE_SIZE_OPTIONS,
     fetch_available_models,
+    format_model_name,
     plot_client_vs_server_barplots,
     plot_dataframe_summary,
     plot_requests_gantt_chart,
@@ -205,6 +206,7 @@ def main() -> None:
             'Model Name',
             options=available_models,
             index=0,
+            format_func=format_model_name,
             help='Select the model to benchmark',
             disabled=st.session_state.running or st.session_state.optional_download,
         )

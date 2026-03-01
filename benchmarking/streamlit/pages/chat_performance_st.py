@@ -15,6 +15,7 @@ from benchmarking.streamlit.streamlit_utils import (
     BRAND_FAVICON,
     DEFAULT_MODEL,
     fetch_available_models,
+    format_model_name,
     render_logo,
     render_title_icon,
     save_uploaded_file,
@@ -134,6 +135,7 @@ def main() -> None:
             'Model Name',
             options=available_models,
             index=0,
+            format_func=format_model_name,
             help='Select the model to chat with',
         )
 
