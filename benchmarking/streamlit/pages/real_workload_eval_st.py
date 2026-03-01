@@ -12,6 +12,7 @@ from benchmarking.streamlit.streamlit_utils import (
     DEFAULT_MODEL,
     MULTIMODAL_IMAGE_SIZE_OPTIONS,
     QPS_DISTRIBUTION_OPTIONS,
+    MODEL_SELECTOR_HELP,
     fetch_available_models,
     format_model_name,
     plot_client_vs_server_barplots,
@@ -161,7 +162,7 @@ def main() -> None:
             options=available_models,
             index=0,
             format_func=format_model_name,
-            help='Select the model to benchmark',
+            help=MODEL_SELECTOR_HELP,
             disabled=st.session_state.running,
         )
         st.session_state.llm = llm_model

@@ -113,6 +113,13 @@ def fetch_available_models() -> List[str]:
         return [DEFAULT_MODEL]
 
 
+MODEL_SELECTOR_HELP = (
+    '\U0001F1EA\U0001F1FA EU Sovereign — hosted in Infercom\'s EU datacenter. '
+    '\U0001F310 Global Catalog — routed via global infrastructure. '
+    '[Learn more](https://docs.infercom.ai/en/models/infercomcloud-models#identifying-model-regions)'
+)
+
+
 def format_model_name(model_id: str) -> str:
     """Format a model ID for display in the selector with region flag.
 

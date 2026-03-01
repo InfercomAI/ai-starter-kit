@@ -14,6 +14,7 @@ from benchmarking.src.llmperf import common_metrics
 from benchmarking.streamlit.streamlit_utils import (
     BRAND_FAVICON,
     DEFAULT_MODEL,
+    MODEL_SELECTOR_HELP,
     fetch_available_models,
     format_model_name,
     render_logo,
@@ -136,7 +137,7 @@ def main() -> None:
             options=available_models,
             index=0,
             format_func=format_model_name,
-            help='Select the model to chat with',
+            help=MODEL_SELECTOR_HELP,
         )
 
         st.session_state.uploaded_file = st.file_uploader(
