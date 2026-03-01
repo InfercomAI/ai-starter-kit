@@ -206,6 +206,9 @@ def set_font() -> None:
             }}
 
             /* Sidebar section headers — green left accent bar */
+            section[data-testid="stSidebar"] .stHeading h1,
+            section[data-testid="stSidebar"] .stHeading h2,
+            section[data-testid="stSidebar"] .stHeading h3,
             section[data-testid="stSidebar"] .stMarkdown h1,
             section[data-testid="stSidebar"] .stMarkdown h2,
             section[data-testid="stSidebar"] .stMarkdown h3 {{
@@ -215,6 +218,14 @@ def set_font() -> None:
                 margin-bottom: 0.4rem !important;
                 font-weight: 500 !important;
                 letter-spacing: -0.01em !important;
+            }}
+
+            /* Nav separator — green gradient line */
+            [data-testid="stSidebarNavSeparator"] {{
+                border-bottom: none !important;
+                background: linear-gradient(90deg, {BRAND_GREEN}44, transparent) !important;
+                height: 1px !important;
+                margin: 0.5rem 0 !important;
             }}
 
             /* Sidebar horizontal rules — subtle green gradient */
