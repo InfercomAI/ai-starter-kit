@@ -5,7 +5,7 @@ import sys
 import time
 from datetime import datetime
 from math import isclose
-from typing import Any, Dict, List, Protocol, Tuple
+from typing import Any, Dict, List, Optional, Protocol, Tuple
 
 import requests
 import sseclient
@@ -32,9 +32,15 @@ class Tokenizer(Protocol):
 
 
 class BaseAPIEndpoint(abc.ABC):
-    def __init__(self, request_config: RequestConfig, tokenizer: Tokenizer) -> None:
+    def __init__(
+        self,
+        request_config: RequestConfig,
+        tokenizer: Tokenizer,
+        session: Optional[requests.Session] = None,
+    ) -> None:
         self.request_config = request_config
         self.tokenizer = tokenizer
+        self.session = session or requests.Session()
 
     @abc.abstractmethod
     def _get_url(self, *args: Any, **kwargs: Any) -> str:
@@ -232,8 +238,13 @@ class BaseAPIEndpoint(abc.ABC):
 
 
 class InfercomAPI(BaseAPIEndpoint):
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
+    def __init__(
+        self,
+        request_config: RequestConfig,
+        tokenizer: Tokenizer,
+        session: Optional[requests.Session] = None,
+    ) -> None:
+        super().__init__(request_config, tokenizer, session=session)
         # Load Infercom API env variables
         if self.request_config.api_variables:
             self.base_url = (
@@ -333,7 +344,7 @@ class InfercomAPI(BaseAPIEndpoint):
         metrics[common_metrics.REQ_START_TIME] = datetime.now().strftime('%H:%M:%S.%f')
         start_time = event_start_time = time.monotonic()
 
-        with requests.post(url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode) as response:
+        with self.session.post(url, headers=headers, json=json_data, stream=self.request_config.is_stream_mode) as response:
             if response.status_code != 200:
                 response.raise_for_status()
             client = sseclient.SSEClient(response)  # type: ignore[arg-type]
@@ -392,12 +403,17 @@ class InfercomAPI(BaseAPIEndpoint):
         return metrics, generated_text
 
 
-def llm_request(request_config: RequestConfig, tokenizer: Tokenizer) -> Tuple[Dict[str, Any], str, RequestConfig]:
+def llm_request(
+    request_config: RequestConfig,
+    tokenizer: Tokenizer,
+    session: Optional[requests.Session] = None,
+) -> Tuple[Dict[str, Any], str, RequestConfig]:
     """Makes a single completion request to a LLM API
 
     Args:
         request_config (RequestConfig): config options including user's prompt and LLM parameters
         tokenizer (Tokenizer): tokenizer for counting tokens
+        session (Optional[requests.Session]): HTTP session for connection pooling
 
     Returns:
         tuple: Metrics about the performance charateristics of the request.
@@ -413,7 +429,7 @@ def llm_request(request_config: RequestConfig, tokenizer: Tokenizer) -> Tuple[Di
 
     try:
         if request_config.llm_api == 'sncloud':
-            infercom_client = InfercomAPI(request_config, tokenizer)
+            infercom_client = InfercomAPI(request_config, tokenizer, session=session)
             metrics, generated_text = infercom_client.compute_metrics(metrics)
 
         else:

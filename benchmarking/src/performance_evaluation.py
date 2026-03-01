@@ -8,6 +8,8 @@ import sys
 import threading
 import time
 import uuid
+
+import requests
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -178,6 +180,9 @@ class BasePerformanceEvaluator(abc.ABC):
     ) -> None:
         """Sends multiple requests to LLM and collects results
 
+        Uses a persistent HTTP session per thread for connection pooling,
+        with a warm-up request to pre-establish TCP+TLS before timing.
+
         Args:
             request_config_batch (list): list of request configs for LLM calls
             completed_requests (list): list of completed outputs from requests
@@ -185,28 +190,47 @@ class BasePerformanceEvaluator(abc.ABC):
             start_time (float): start time of the process
             num_requests (int): number of total requests
         """
-        for request_config in request_config_batch:
-            if self.stop_event.is_set():
-                logger.info('Stopping request processing in thread due to stop signal.')
-                break
-            if time.monotonic() - start_time >= self.timeout:
-                break
-            req_metrics, response_text, request_config = llm_request(request_config, self.tokenizer)
+        session = requests.Session()
+        try:
+            # Warm up the connection (TCP+TLS handshake) before timed requests
+            base_url = self.api_variables.get('INFERCOM_API_BASE', '')
+            api_key = self.api_variables.get('INFERCOM_API_KEY', '')
+            if base_url:
+                try:
+                    session.get(
+                        f'{base_url}/models',
+                        headers={'Authorization': f'Bearer {api_key}'} if api_key else {},
+                        timeout=10,
+                    )
+                except Exception:
+                    pass  # Warm-up failure is non-fatal
 
-            # Create response object containing metrics, generated text, and corresponding request config
-            response_object = LLMResponse(
-                metrics=req_metrics,
-                response_text=response_text,
-                request_config=request_config,
-            )
-            completed_requests.extend([response_object])
-            update_unit = 1
-            progress.append(update_unit)
+            for request_config in request_config_batch:
+                if self.stop_event.is_set():
+                    logger.info('Stopping request processing in thread due to stop signal.')
+                    break
+                if time.monotonic() - start_time >= self.timeout:
+                    break
+                req_metrics, response_text, request_config = llm_request(
+                    request_config, self.tokenizer, session=session
+                )
 
-            if self.cli_progress_bar:
-                self.cli_progress_bar.update(update_unit)
-            if self.ui_progress_bar:
-                self.ui_progress_bar(len(progress), num_requests)
+                # Create response object containing metrics, generated text, and corresponding request config
+                response_object = LLMResponse(
+                    metrics=req_metrics,
+                    response_text=response_text,
+                    request_config=request_config,
+                )
+                completed_requests.extend([response_object])
+                update_unit = 1
+                progress.append(update_unit)
+
+                if self.cli_progress_bar:
+                    self.cli_progress_bar.update(update_unit)
+                if self.ui_progress_bar:
+                    self.ui_progress_bar(len(progress), num_requests)
+        finally:
+            session.close()
 
     def build_metrics_summary(
         self,
