@@ -185,10 +185,10 @@ def main() -> None:
         reported by the API."""
     )
     st.markdown(
-        """**Time to First Token (TTFT)** — How quickly the model starts responding after receiving your prompt.
-        **End-to-End Latency** — Total time from sending a request to receiving the complete response.
-        **Output Throughput (tokens/sec/request)** — How many tokens the model generates per second for a single request.
-        **Throughput (tokens/sec)** — Total token generation rate across all concurrent requests."""
+        "- **Time to First Token (TTFT)** — How quickly the model starts responding after receiving your prompt.\n"
+        "- **End-to-End Latency** — Total time from sending a request to receiving the complete response.\n"
+        "- **Output Throughput (tokens/sec/request)** — How many tokens the model generates per second for a single request.\n"
+        "- **Throughput (tokens/sec)** — Total token generation rate across all concurrent requests."
     )
 
     with st.sidebar:
