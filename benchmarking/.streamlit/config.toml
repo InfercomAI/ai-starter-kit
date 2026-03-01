@@ -4,7 +4,7 @@ showErrorDetails = true
 [theme]
 base = "dark"
 primaryColor = "#1FA85F"
-backgroundColor = "#2D2D2D"
-secondaryBackgroundColor = "#4C4C4C"
+backgroundColor = "#262626"
+secondaryBackgroundColor = "#1A1A2E"
 textColor = "#FAFAFA"
 font = "sans serif"

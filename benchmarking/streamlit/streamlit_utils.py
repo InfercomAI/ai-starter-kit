@@ -28,9 +28,9 @@ BRAND_BLUE_DARK = '#0865B1'
 BRAND_ORANGE = '#E67E22'
 BRAND_ORANGE_DARK = '#B8641B'
 
-BRAND_CHARCOAL = '#2D2D2D'
-BRAND_CHARCOAL_LIGHT = '#4C4C4C'
-BRAND_CHARCOAL_DARK = '#242424'
+BRAND_CHARCOAL = '#262626'
+BRAND_CHARCOAL_LIGHT = '#333340'
+BRAND_CHARCOAL_DARK = '#1A1A2E'
 
 BRAND_TEXT = '#FAFAFA'
 BRAND_TEXT_SECONDARY = '#E0E0E0'
@@ -199,7 +199,176 @@ def set_font() -> None:
                 font-family: 'Roboto', sans-serif !important;
             }}
 
-            /* Primary button styling (green) */
+            /* ── Sidebar styling ── */
+            section[data-testid="stSidebar"] {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+                border-right: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+            }}
+
+            /* Sidebar section headers — green left accent bar */
+            section[data-testid="stSidebar"] .stMarkdown h1,
+            section[data-testid="stSidebar"] .stMarkdown h2,
+            section[data-testid="stSidebar"] .stMarkdown h3 {{
+                border-left: 3px solid {BRAND_GREEN} !important;
+                padding-left: 0.6rem !important;
+                margin-top: 1.2rem !important;
+                margin-bottom: 0.4rem !important;
+                font-weight: 500 !important;
+                letter-spacing: -0.01em !important;
+            }}
+
+            /* Sidebar horizontal rules — subtle green gradient */
+            section[data-testid="stSidebar"] hr {{
+                border: none !important;
+                height: 1px !important;
+                background: linear-gradient(90deg, {BRAND_GREEN}44, transparent) !important;
+                margin: 0.8rem 0 !important;
+            }}
+
+            /* ── Input fields ── */
+            /* Text inputs, number inputs, select boxes */
+            section[data-testid="stSidebar"] .stTextInput input,
+            section[data-testid="stSidebar"] .stNumberInput input,
+            section[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"],
+            .stTextInput input,
+            .stNumberInput input {{
+                background-color: #1E1E2A !important;
+                border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+                border-radius: 6px !important;
+                color: {BRAND_TEXT} !important;
+                transition: border-color 0.2s ease !important;
+            }}
+
+            /* Input focus state — green glow */
+            section[data-testid="stSidebar"] .stTextInput input:focus,
+            section[data-testid="stSidebar"] .stNumberInput input:focus,
+            .stTextInput input:focus,
+            .stNumberInput input:focus {{
+                border-color: {BRAND_GREEN} !important;
+                box-shadow: 0 0 0 1px {BRAND_GREEN}40 !important;
+            }}
+
+            /* Selectbox container styling */
+            [data-baseweb="select"] {{
+                background-color: #1E1E2A !important;
+                border-radius: 6px !important;
+            }}
+            [data-baseweb="select"] > div {{
+                background-color: #1E1E2A !important;
+                border-color: {BRAND_CHARCOAL_LIGHT} !important;
+                border-radius: 6px !important;
+            }}
+            [data-baseweb="select"] > div:hover {{
+                border-color: {BRAND_GREEN}88 !important;
+            }}
+
+            /* Selectbox dropdown menu */
+            [data-baseweb="popover"] {{
+                background-color: #1E1E2A !important;
+                border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+                border-radius: 6px !important;
+            }}
+            [data-baseweb="popover"] li {{
+                background-color: #1E1E2A !important;
+            }}
+            [data-baseweb="popover"] li:hover {{
+                background-color: {BRAND_GREEN}18 !important;
+            }}
+            [role="option"][aria-selected="true"] {{
+                background-color: {BRAND_GREEN}22 !important;
+            }}
+
+            /* Number input +/- buttons */
+            .stNumberInput button {{
+                border-color: {BRAND_CHARCOAL_LIGHT} !important;
+                color: {BRAND_TEXT_SECONDARY} !important;
+            }}
+            .stNumberInput button:hover {{
+                border-color: {BRAND_GREEN} !important;
+                color: {BRAND_GREEN} !important;
+            }}
+
+            /* ── Labels ── */
+            .stSelectbox label,
+            .stTextInput label,
+            .stNumberInput label,
+            .stSlider label {{
+                color: {BRAND_TEXT_SECONDARY} !important;
+                font-size: 0.85rem !important;
+                font-weight: 400 !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.04em !important;
+            }}
+
+            /* ── Main content area ── */
+            .stMainBlockContainer {{
+                background-color: {BRAND_CHARCOAL} !important;
+            }}
+
+            /* ── Expander styling ── */
+            .streamlit-expanderHeader {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+                border-radius: 6px !important;
+                border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+            }}
+
+            /* ── Metric cards ── */
+            [data-testid="stMetric"] {{
+                background-color: {BRAND_CHARCOAL_DARK} !important;
+                border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+                border-radius: 8px !important;
+                padding: 0.8rem 1rem !important;
+            }}
+            [data-testid="stMetric"] [data-testid="stMetricValue"] {{
+                color: {BRAND_GREEN_LIGHT} !important;
+                font-weight: 700 !important;
+            }}
+
+            /* ── Tabs ── */
+            .stTabs [data-baseweb="tab-list"] {{
+                gap: 0 !important;
+                border-bottom: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+            }}
+            .stTabs [data-baseweb="tab"] {{
+                border-bottom: 2px solid transparent !important;
+                color: {BRAND_TEXT_SECONDARY} !important;
+                padding: 0.5rem 1rem !important;
+            }}
+            .stTabs [aria-selected="true"] {{
+                border-bottom-color: {BRAND_GREEN} !important;
+                color: {BRAND_TEXT} !important;
+            }}
+
+            /* ── Data table styling ── */
+            .stDataFrame {{
+                border: 1px solid {BRAND_CHARCOAL_LIGHT} !important;
+                border-radius: 6px !important;
+            }}
+
+            /* ── Toast / alert messages ── */
+            .stSuccess {{
+                background-color: {BRAND_GREEN}15 !important;
+                border-left: 3px solid {BRAND_GREEN} !important;
+                color: {BRAND_TEXT} !important;
+            }}
+
+            /* ── Scrollbar styling ── */
+            ::-webkit-scrollbar {{
+                width: 6px;
+                height: 6px;
+            }}
+            ::-webkit-scrollbar-track {{
+                background: {BRAND_CHARCOAL_DARK};
+            }}
+            ::-webkit-scrollbar-thumb {{
+                background: {BRAND_CHARCOAL_LIGHT};
+                border-radius: 3px;
+            }}
+            ::-webkit-scrollbar-thumb:hover {{
+                background: {BRAND_GREEN}88;
+            }}
+
+            /* ── Primary button styling (green) ── */
             .stButton > button[kind="primary"],
             button[data-testid="stBaseButton-primary"] {{
                 background-color: {BRAND_GREEN} !important;
@@ -208,12 +377,13 @@ def set_font() -> None:
                 font-family: 'Roboto', sans-serif !important;
                 font-weight: 500 !important;
                 border-radius: 6px !important;
-                transition: background-color 0.2s ease !important;
+                transition: all 0.2s ease !important;
             }}
             .stButton > button[kind="primary"]:hover,
             button[data-testid="stBaseButton-primary"]:hover {{
                 background-color: {BRAND_GREEN_DARK} !important;
                 border-color: {BRAND_GREEN_DARK} !important;
+                box-shadow: 0 2px 8px {BRAND_GREEN}30 !important;
             }}
 
             /* Secondary button styling (outline green) */
@@ -225,11 +395,13 @@ def set_font() -> None:
                 font-weight: 500 !important;
                 border-radius: 6px !important;
                 background-color: transparent !important;
+                transition: all 0.2s ease !important;
             }}
             .stButton > button[kind="secondary"]:hover,
             button[data-testid="stBaseButton-secondary"]:hover {{
                 border-color: {BRAND_GREEN_LIGHT} !important;
                 color: {BRAND_GREEN_LIGHT} !important;
+                box-shadow: 0 0 0 1px {BRAND_GREEN}30 !important;
             }}
 
             /* Download button styling (blue) */
@@ -239,15 +411,29 @@ def set_font() -> None:
                 color: #FFFFFF !important;
                 font-family: 'Roboto', sans-serif !important;
                 border-radius: 6px !important;
+                transition: all 0.2s ease !important;
             }}
             .stDownloadButton > button:hover {{
                 background-color: {BRAND_BLUE_DARK} !important;
                 border-color: {BRAND_BLUE_DARK} !important;
+                box-shadow: 0 2px 8px {BRAND_BLUE}30 !important;
             }}
 
             /* Progress bar brand color */
             .stProgress > div > div > div {{
                 background-color: {BRAND_GREEN} !important;
+            }}
+
+            /* ── Navigation styling ── */
+            section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a {{
+                border-radius: 6px !important;
+                transition: background-color 0.15s ease !important;
+            }}
+            section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {{
+                background-color: {BRAND_GREEN}12 !important;
+            }}
+            section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a[aria-selected="true"] {{
+                background-color: {BRAND_GREEN}20 !important;
             }}
         </style>
         """,
