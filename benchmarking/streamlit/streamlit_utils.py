@@ -62,13 +62,11 @@ _GLOBAL_FLAG = '\U0001F310'  # 🌐
 
 
 @st.cache_data(ttl=300)  # Cache for 5 minutes
-def fetch_available_models() -> List[str]:
+def _fetch_models_and_regions() -> tuple[List[str], Dict[str, str]]:
     """Fetch available models from the Infercom API, grouped by region.
 
-    EU sovereign models are listed first, followed by Global Catalog models.
-
     Returns:
-        List of model IDs available for inference.
+        Tuple of (model IDs list, region map dict).
     """
     try:
         response = requests.get(
@@ -80,9 +78,11 @@ def fetch_available_models() -> List[str]:
 
         eu_models = []
         global_models = []
+        region_map = {}
         for model in data.get('data', []):
             model_id = model['id']
             region = (model.get('sn_metadata') or {}).get('region', '')
+            region_map[model_id] = region
             if region == 'EU':
                 eu_models.append(model_id)
             else:
@@ -100,17 +100,24 @@ def fetch_available_models() -> List[str]:
             global_models.insert(0, DEFAULT_MODEL)
 
         models = eu_models + global_models
-
-        # Store region metadata in session state for format_func
-        region_map = {}
-        for model in data.get('data', []):
-            region = (model.get('sn_metadata') or {}).get('region', '')
-            region_map[model['id']] = region
-        st.session_state['_model_regions'] = region_map
-
-        return models if models else [DEFAULT_MODEL]
+        return (models if models else [DEFAULT_MODEL], region_map)
     except Exception:
-        return [DEFAULT_MODEL]
+        return ([DEFAULT_MODEL], {})
+
+
+def fetch_available_models() -> List[str]:
+    """Fetch available models from the Infercom API, grouped by region.
+
+    EU sovereign models are listed first, followed by Global Catalog models.
+    Also populates session state with region metadata for format_func.
+
+    Returns:
+        List of model IDs available for inference.
+    """
+    models, region_map = _fetch_models_and_regions()
+    # Always update session state (even on cache hit)
+    st.session_state['_model_regions'] = region_map
+    return models
 
 
 MODEL_SELECTOR_HELP = (
