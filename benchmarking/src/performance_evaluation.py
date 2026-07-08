@@ -24,7 +24,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 from dotenv import load_dotenv
-from streamlit.runtime.scriptrunner import add_script_run_ctx
+from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
 from tqdm import tqdm
 
 import benchmarking.src.llmperf.llmperf_utils as llmperf_utils
@@ -51,6 +51,18 @@ load_dotenv('../.env', override=True)
 SYSTEM_PROMPT_PATH = os.path.join(file_location, '../prompts/system-prompt_template.yaml')
 USER_PROMPT_TEXT_INSTRUCT_PATH = os.path.join(file_location, '../prompts/user-prompt_template-text_instruct.yaml')
 USER_PROMPT_VISION_INSTRUCT_PATH = os.path.join(file_location, '../prompts/user-prompt_template-vision_instruct.yaml')
+
+
+def _run_with_streamlit_context(ctx, fn, *args, **kwargs):
+    """Wrapper to run a function with the Streamlit script context.
+
+    Streamlit 1.37+ requires the script run context to be set on worker threads
+    before they access any Streamlit state. This wrapper captures the context
+    from the main thread and applies it to the worker thread.
+    """
+    if ctx is not None:
+        add_script_run_ctx(threading.current_thread(), ctx)
+    return fn(*args, **kwargs)
 
 
 class BasePerformanceEvaluator(abc.ABC):
@@ -658,6 +670,8 @@ class CustomPerformanceEvaluator(BasePerformanceEvaluator):
         progress: List[Any] = []
 
         start_time = time.monotonic()
+        # Capture Streamlit context before spawning threads (required for Streamlit 1.37+)
+        streamlit_ctx = get_script_run_ctx()
         # Use ThreadPoolExecutor to handle threads
         with ThreadPoolExecutor(max_workers=self.num_concurrent_requests) as executor:
             # Store futures for the tasks
@@ -668,8 +682,10 @@ class CustomPerformanceEvaluator(BasePerformanceEvaluator):
                     logger.info('Stopping task submission due to stop signal.')
                     break
 
-                # Submit the task to the executor
+                # Submit the task to the executor with Streamlit context
                 future = executor.submit(
+                    _run_with_streamlit_context,
+                    streamlit_ctx,
                     self.send_requests,
                     request_config_batch,
                     llm_responses,
@@ -678,8 +694,6 @@ class CustomPerformanceEvaluator(BasePerformanceEvaluator):
                     total_request_count,
                 )
                 futures.append(future)
-                for t in executor._threads:
-                    add_script_run_ctx(t)
 
             # Wait for all tasks to complete
             for future in as_completed(futures):
@@ -1120,6 +1134,8 @@ class SyntheticPerformanceEvaluator(BasePerformanceEvaluator):
         progress: List[Any] = []
 
         start_time = time.monotonic()
+        # Capture Streamlit context before spawning threads (required for Streamlit 1.37+)
+        streamlit_ctx = get_script_run_ctx()
         # Use ThreadPoolExecutor to handle threads
         with ThreadPoolExecutor(max_workers=self.num_concurrent_requests) as executor:
             # Store futures for the tasks
@@ -1129,8 +1145,10 @@ class SyntheticPerformanceEvaluator(BasePerformanceEvaluator):
                 if self.stop_event.is_set():
                     logger.info('Stopping task submission due to stop signal.')
                     break
-                # Submit the task to the executor
+                # Submit the task to the executor with Streamlit context
                 future = executor.submit(
+                    _run_with_streamlit_context,
+                    streamlit_ctx,
                     self.send_requests,
                     request_config_batch,
                     llm_responses,
@@ -1139,8 +1157,6 @@ class SyntheticPerformanceEvaluator(BasePerformanceEvaluator):
                     num_requests,
                 )
                 futures.append(future)
-                for t in executor._threads:
-                    add_script_run_ctx(t)
 
             # Wait for all tasks to complete
             for future in as_completed(futures):
@@ -1455,6 +1471,8 @@ class RealWorkLoadPerformanceEvaluator(SyntheticPerformanceEvaluator):
         progress: List[Any] = []
 
         start_time = time.monotonic()
+        # Capture Streamlit context before spawning threads (required for Streamlit 1.37+)
+        streamlit_ctx = get_script_run_ctx()
         # Use ThreadPoolExecutor to handle threads
         with ThreadPoolExecutor(max_workers=10000) as executor:
             # Store futures for the tasks
@@ -1465,8 +1483,10 @@ class RealWorkLoadPerformanceEvaluator(SyntheticPerformanceEvaluator):
                     logger.info('Stopping task submission due to stop signal.')
                     break
 
-                # Submit the task to the executor
+                # Submit the task to the executor with Streamlit context
                 future = executor.submit(
+                    _run_with_streamlit_context,
+                    streamlit_ctx,
                     self.send_requests,
                     [request_config],
                     llm_responses,
@@ -1475,8 +1495,6 @@ class RealWorkLoadPerformanceEvaluator(SyntheticPerformanceEvaluator):
                     num_requests,
                 )
                 futures.append(future)
-                for t in executor._threads:
-                    add_script_run_ctx(t)
 
                 # Get wait time based on the distribution
                 wait_time = self._get_wait_time()
